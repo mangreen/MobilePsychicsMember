@@ -1,0 +1,145 @@
+@CHARSET "UTF-8";
+#signup-wrap{
+	width: 100%;
+	display: none;
+}
+.regi-table{
+	margin: 0px auto;
+}
+.regi-table td{
+	width: 550px;
+	padding: 10px;
+}
+.regi-warn{
+	display: none;
+	width: 515px;
+	padding: 15px 0px 15px 35px;
+	border-radius: 5px;
+	font-size: 22px;
+	line-height: 26px;
+}
+.regi-zero-fill{
+	background: #ffb0b0;
+	color: #f00;
+	border: 2px solid #ff5252;
+}
+.regi-error-msg{
+	background: #2493c1;
+	color: #fff;
+	border: 2px solid #dad9d9;
+	
+}
+.regi-span{
+	font-size: 24px;
+	color: #3a3a3a
+}
+.regi-input{
+	width: 550px;
+	height: 70px;
+	border: 2px solid #bfbfbf;
+	border-radius: 5px;
+	font-size: 28px;
+}
+.regi-select{
+	width: 170px;
+	height: 70px;
+	font-size: 24px;
+	border: 2px solid #bfbfbf;
+	border-radius: 5px;
+}
+#start-month{
+	margin-left: 18px;
+}
+#start-day{
+	float: right;
+}
+.signup-submit{
+	background: #ffd001;
+	border-color: #d98500;
+	color: #722300;
+	font-weight: bold;
+}
+#signup-submit-fb{
+	background: #1b74bf;
+	border-color: #0b3f86;
+	color: #ffffff;
+	font-weight: bold;
+}
+#signup-policy{
+	color: #9a9999;
+	line-height: 25px;
+}
+.regi-plc-a{
+	/* text-decoration: none; */
+	color: #279ac0;
+}
+.regi-separate{
+	/* text-decoration: line-through; */
+	width: 235px;
+	border-bottom: 2px solid #bfbfbf;
+	margin-top: 20px;
+}
+.regi-s-left{
+	float: left;
+	margin-left: -15px;
+}
+.regi-s-right{
+	float: right;
+	margin-right: -15px;
+}
+.signup-or{
+	width: 550px;
+	color: #a3a3a3;
+	font-size: 24px;
+	line-height: 40px;
+	text-align: center;
+}
+
+/*
+ * 以下為login頁面新增屬性
+ */
+ #login-wrap{
+ 	display: none;
+ }
+ #login-suf-wrap{
+ 	margin-top: 50px;
+ }
+.suf-seperate{
+	height: 2px;
+	border-top: 1px solid #bfbfbf;
+	border-bottom: 1px solid #bfbfbf;
+}
+#suf-wrap{
+	width: 550px;
+	
+	margin: 0px auto;
+}
+.regi-fgpw{
+	/* width:100%; */
+	/* text-decoration: none; */
+	display: block;
+	font-size: 24px;
+	line-height: 80px;
+	text-align: center;
+}
+
+#login-submit{
+	background: #1c90bb;
+	border-color: #055a79;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.suf-no-account{
+	width: 550px;
+	color: #a3a3a3;
+	font-size: 24px;
+	line-height: 80px;
+	font-weight: normal;
+	text-align: center;
+}
+#joinfree-submit{
+	display: block;
+	width: 340px;
+	margin: 0px auto;
+}
