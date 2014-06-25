@@ -1,8 +1,9 @@
+/**
+ * 將.psy-a的click事件綁定在#psychic-list
+ */
 function delegatePsychic(){
   
-	delegate('psychic-list', 'onclick', 'psy-a', function(){
-		
-        //alert(this.querySelector('span').innerHTML);
+	delegate('psychic-list', 'onclick', 'psy-a', function(){	
 		alert(this.id);
     });
 }
@@ -38,7 +39,7 @@ function getPsychicList(page){
 			pList.insertAdjacentHTML("beforeend", oPsy);//添加
         },
         fail : function(status) { // 此處放失敗後執行的代碼
-        	alert(status.message);
+        	alert("E001: Fail to get psychic list");
         }
     });
 	

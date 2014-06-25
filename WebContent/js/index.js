@@ -25,7 +25,8 @@ $( document ).ready(function() {
     resizeWindow();
     showMoreMenu();
     
-    getPsychicList();
+    getPsychicList(1);
+    delegatePsychic();
 });
 
 function showMoreMenu(){
