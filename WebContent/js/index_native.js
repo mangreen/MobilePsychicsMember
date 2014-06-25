@@ -41,7 +41,8 @@ addLoadEvent(addDragListeners);
 addLoadEvent(submitSignup);
 addLoadEvent(submitLogin);
 
-addLoadEvent(getPsychicList);
+addLoadEvent(delegatePsychic);
+addLoadEvent(getPsychicList(1));
 
 function submitSignup(){
 	document.getElementById('signup-submit').addEventListener('click', function() {
