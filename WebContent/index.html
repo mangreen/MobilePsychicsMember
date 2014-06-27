@@ -6,24 +6,32 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- 隱藏底部 iPhone button bar，使其看起來像App -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- 防止 iPhone 旋轉後畫面會放大 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 <link rel="stylesheet" type="text/css" href="css/reset.css"/>
 <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arial"> -->
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 <link rel="stylesheet" type="text/css" href="css/signup.css"/>
 
+<script type="text/javascript" src="js/param.js"></script>
+<!--
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>!window.jQuery && document.write('<script src="js/jquery/jquery-2.1.0.min.js"><\/script>');</script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>!window.jQuery && document.write('<script src="js/jquery/jquery-ui-1.10.4.custom.min.js"><\/script>');</script>
-<script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/member.js"></script>
-
-<!--
-<script type="text/javascript" src="js/native/utility.js"></script>
-<script type="text/javascript" src="js/member_native.js"></script>
-<script type="text/javascript" src="js/index_native.js"></script>
+<script type="text/javascript" src="js/sign.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 -->
+
+<script type="text/javascript" src="js/native/utility.js"></script>
+<script type="text/javascript" src="js/native/sign_native.js"></script>
+<script type="text/javascript" src="js/native/member_native.js"></script>
+<script type="text/javascript" src="js/native/index_native.js"></script>
+
 
 <title>SupremePsychics - Live Psychic Reading and Advice Online</title>
 </head>
@@ -34,7 +42,7 @@
 		<button id="nav-img"></button>
 		<span id="nav-unread">&nbsp;9&nbsp;</span>
 	</div>
-	<div id="logo"></div>
+	<img id="logo" src="img/logo.png" alt="Supreme Psychics"></img>
 	<div id="signin-bar-1024">
 		<div id="join-free-1024" class="join-free-btn signin-btn-1024">Join Free</div>
 		<div id="login-1024" class="login-btn signin-btn-1024">Login</div>
@@ -79,11 +87,11 @@
 					<a class="mfat mfa" href="#">Full Site</a>
 					<span class="mfat mfspan">|</span>
 					<a class="mfat mfa" href="#">Privacy Policy/Cookies</a>
-					<span class="mfat mfspan">|</span>
+
 					<a class="mfat mfa" href="#">Terms of Use</a>
-					
-					<a class="mfat mfa" href="#">Contact Us</a>
 					<span class="mfat mfspan">|</span>
+					<a class="mfat mfa" href="#">Contact Us</a>
+
 					<a class="mfat mfa" href="#">Satisfaction Guarantee</a>
 				</div><!-- menu-a -->
 				<p id="menu-warn">THE SERVICES PROVIDED ON THIS WEBSITE ARE FOR ENTERAINMENT PURPOSE ONLY.</p>
@@ -243,21 +251,27 @@
 				<table id="signup-table" class="regi-table">
 					<tr>
 				    	<td>
-							<span id="js-signup-zero-fill" class="regi-warn regi-zero-fill">All fields are required to be filled.</span>
+				    		<div id="js-signup-zero-fill" class="regi-warn-wrap regi-warn-zero">
+								<span>All fields are required to be filled.</span>
+							</div>
 						</td>
 	                </tr>
 				    <tr>
 				    	<td>
 							<span class="regi-span">Username</span><br/>
 							<input id="js-signup-un" class="regi-input" type="text" name="Username"/><br/>
-							<span class="regi-warn regi-error-msg">Enter your Username.</span>
+							<div class="regi-warn-wrap regi-warn-error">
+								<span>Enter your username.</span>
+							</div>
 						</td>
 	                </tr>
 	                <tr>
 	                	<td>
 	                		<span class="regi-span">Password</span><br/>
 	                		<input id="js-signup-pw" class="regi-input" type="text" name="Password"/><br/>
-	                		<span class="regi-warn regi-error-msg">Enter your Password.</span>
+	                		<div class="regi-warn-wrap regi-warn-error">
+	                			<span>Enter your password.</span>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -270,37 +284,84 @@
 	                	<td>
 							<span class="regi-span">Email</span><br/>
 							<input id="js-signup-email" class="regi-input" type="text" name="Email"/><br/>
-							<span class="regi-warn regi-error-msg">Enter your Email.</span>
+							<div class="regi-warn-wrap regi-warn-error">
+								<span>Enter your email.</span>
+							</div>
 						</td>
 					</tr>
 					<tr>
 	                	<td colspan="3">
 							<span class="regi-span">Date of Birth</span><br/>
-	
+
 							<select id="start_year" class="regi-select" name="start_year">
-	  							<option value='01'>2014</option>
-	  							<option value='02'>2015</option>
+	  							<option value=''></option>
 	  						</select> 
-	
+
 							<select id="start-month" class="regi-select" name="start-month">
+								<option value=''></option>
 	  							<option value='01'>Jan</option>
 	  							<option value='02'>Feb</option>
+	  							<option value='03'>Mar</option>
+	  							<option value='04'>Apr</option>
+	  							<option value='05'>May</option>
+	  							<option value='06'>Jun</option>
+	  							<option value='07'>Jul</option>
+	  							<option value='08'>Aug</option>
+	  							<option value='09'>Sep</option>
+	  							<option value='10'>Oct</option>
+	  							<option value='11'>Nov</option>
+	  							<option value='12'>Dec</option>
 	  						</select> 
 	
 							<select id="start-day" class="regi-select" name="start-day">
+	  							<option value=''></option>
 	  							<option value='01'>1</option>
 	  							<option value='02'>2</option>
-	  						</select> 
+	  							<option value='03'>3</option>
+	  							<option value='04'>4</option>
+	  							<option value='05'>5</option>
+	  							<option value='06'>6</option>
+	  							<option value='07'>7</option>
+	  							<option value='08'>8</option>
+	  							<option value='09'>9</option>
+	  							<option value='10'>10</option>
+	  							
+	  							<option value='11'>11</option>
+	  							<option value='12'>12</option>
+	  							<option value='13'>13</option>
+	  							<option value='14'>14</option>
+	  							<option value='15'>15</option>
+	  							<option value='16'>16</option>
+	  							<option value='17'>17</option>
+	  							<option value='18'>18</option>
+	  							<option value='19'>19</option>
+	  							<option value='20'>20</option>
+	  							
+	  							<option value='21'>21</option>
+	  							<option value='22'>22</option>
+	  							<option value='23'>23</option>
+	  							<option value='24'>24</option>
+	  							<option value='25'>25</option>
+	  							<option value='26'>26</option>
+	  							<option value='27'>27</option>
+	  							<option value='28'>28</option>
+	  							<option value='29'>29</option>
+	  							<option value='30'>30</option>
+	  							<option value='31'>31</option>
+	  						</select>
+	  						<div id="regi-warn-bith" class="regi-warn-wrap regi-warn-error"> 
+	  							<span class="regi-warn regi-error-msg">Enter your date of birth.</span>
+							</div>
 						</td>
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="signup-submit" class="regi-input signup-submit" type="submit" value="Sign Up"></div>
+	                		<div id="signup-submit" class="regi-lift regi-input regi-btn signup-submit" type="submit" value="Sign Up">Sign Up</div>
 						</td>
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<span id="signup-policy">By clicking Sign Up, you agree to our 
+	                		<span id="signup-policy" class="regi-lift">By clicking Sign Up, you agree to our 
 	                			<a class="regi-plc-a" href="#">Terms of Use</a> 
 	                			and that you have read our 
 	                			<a class="regi-plc-a" href="#">Privacy Policy</a>.
@@ -309,14 +370,14 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="" class="regi-separate regi-s-left"></div>
-	                		<div id="" class="regi-separate regi-s-right"></div>
-	                		<div class="signup-or">OR</div>
+	                		<div id="" class="regi-separate regi-s-left regi-lift"></div>
+	                		<div id="" class="regi-separate regi-s-right regi-lift"></div>
+	                		<div class="signup-or regi-lift">OR</div>
 						</td>
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<input id="signup-submit-fb" class="regi-input" type="submit" value="Sign Up with Facebook"/>
+	                		<div id="signup-submit-fb" class="regi-input regi-btn regi-lift" type="submit" value="Sign Up with Facebook">Sign Up with Facebook</div>
 						</td>
 					</tr>
 	            </table>
@@ -330,26 +391,32 @@
 				<table id="login-table" class="regi-table">
 				    <tr>
 				    	<td>
-							<span id="js-login-zero-fill" class="regi-warn regi-zero-fill">Please enter your Username or Email and Password.</span>
+				    		<div id="js-login-zero-fill" class="regi-warn-wrap regi-warn-zero">
+								<span class="regi-warn regi-zero-fill">Please enter your Username or Email and Password.</span>
+							</div>
 						</td>
 	                </tr>
 				    <tr>
 				    	<td>
 							<span class="regi-span">Username</span><br/>
 							<input id="js-login-un" class="regi-input" type="text" name="Username"/><br/>
-							<span class="regi-warn regi-error-msg">Enter your Username or Email.</span>
+							<div class="regi-warn-wrap regi-warn-error">
+								<span>Enter your username or email.</span>
+							</div>
 						</td>
 	                </tr>
 	                <tr>
 	                	<td>
 	                		<span class="regi-span">Password</span><br/>
 	                		<input id="js-login-pw" class="regi-input" type="text" name="Password"/><br/>
-	                		<span class="regi-warn regi-error-msg">Enter your Password.</span>
+	                		<div class="regi-warn-wrap regi-warn-error">
+	                			<span>Enter your password.</span>
+							</div>
 						</td>
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="login-submit" class="regi-input" type="submit" value="Login"></div>
+	                		<div id="login-submit" class="regi-input regi-btn" type="submit" value="Login">Login</div>
 						</td>
 					</tr>
 					<tr>
@@ -366,7 +433,7 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<input id="signup-submit-fb" class="regi-input" type="submit" value="Sign Up with Facebook"/>
+	                		<div id="signup-submit-fb" class="regi-input regi-btn" type="submit" value="Sign Up with Facebook">Sign Up with Facebook</div>
 						</td>
 					</tr>				
 	            </table>
@@ -376,7 +443,7 @@
 					<div class="suf-seperate"></div>
 					<div id="suf-wrap">
 		            	<div class="suf-no-account">Don't have an account?</div>
-		                <input id="joinfree-submit" class="regi-input signup-submit" type="submit" value="Sign Up"/>
+		                <div class="join-free-btn regi-input regi-btn signup-submit" type="submit" value="Sign Up">Sign Up</div>
 		            </div><!-- signup-free-wrap -->
 	            </div><!-- login-suf-wrap -->
 			</div><!-- login-wrap -->

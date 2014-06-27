@@ -2,16 +2,6 @@
  * jquery-2.1.0.min.js
  * jquery-ui.js
  */
-var MODE = "small";
-
-var CLIENT_W = document.documentElement.clientWidth;
-var CLIENT_H = document.documentElement.clientHeight;
-
-var MENU_W = 480;
-var HEADER_H = 70;
-var BANNER_SPARE_2W = 40;
-var PSYCHIC_IMG_W = 200;
-var PSYCHIC_SPARE_W = 10;
 
 $( document ).ready(function() {
     //console.log( "ready!" );
@@ -22,11 +12,14 @@ $( document ).ready(function() {
     chengeCotent();
     setDraggable("menu-drag");
     setDraggable("content-drag");
+    addTouchListeners();
     resizeWindow();
     showMoreMenu();
     
     getPsychicList(1);
     delegatePsychic();
+    
+    setSignInAndUp();
 });
 
 function showMoreMenu(){
@@ -89,6 +82,74 @@ function setDraggable(dragTarget){
     });
 }
 
+function addTouchListeners(){
+	var oldY, newY;
+	var diff, top;
+	
+	document.getElementById('menu-drag').addEventListener('touchstart', touchStart, false);
+	document.getElementById('content-drag').addEventListener('touchstart', touchStart, false);
+	window.addEventListener('touchend', touchEnd, false);
+
+	function touchEnd(e){	    
+		//console.log("touchend");
+		
+		if(Number(window.drag.style.top.replace("px", "")) > HEADER_H){
+			window.drag.style.top = HEADER_H + 'px';
+	    }else if(Number(window.drag.style.top.replace("px", "")) < diff){
+	    	diff = (diff > HEADER_H) ? HEADER_H : diff;
+	    	window.drag.style.top = diff + 'px';
+	    }
+		
+		window.removeEventListener('touchmove', dragDiv, true);
+	}
+
+	function touchStart(e){
+		//console.log("touchstart"+", clientY:"+e.touches[0].clientY+", pageY:"+e.touches[0].pageY+", screenY:"+e.touches[0].screenY);
+		
+		oldY = e.touches[0].screenY;
+
+		window.addEventListener('touchmove', dragDiv, true);
+        //window.addEventListener('touchmove', dragContent, true);
+		if(e.currentTarget.id === "menu-drag"){
+			//抓取#menu-list及#menu-footer來設定#menu-drag的高度
+			var menuDragH = document.getElementById('menu-list').offsetHeight + document.getElementById('menu-footer').offsetHeight;
+			document.getElementById('menu-drag').style.height = menuDragH + "px";
+			
+	        window.drag = document.getElementById("menu-drag");
+	        window.drop = document.getElementById("menu");
+		}else if(e.currentTarget.id === "content-drag"){
+			window.drag = document.getElementById("content-drag");
+	        window.drop = document.getElementById("content");
+	    }
+		top = Number(window.drag.style.top.replace("px", ""));
+	}
+
+	function dragDiv(e){
+		//console.log("touchmove"+", clientY:"+e.touches[0].clientY+", pageY:"+e.touches[0].pageY+", screenY:"+e.touches[0].screenY);
+		
+		stopDefault(e);
+
+		newY = e.touches[0].screenY;
+		
+	    var offset = newY - oldY + top;
+	    diff = Number(window.drop.style.height.replace("px", "")) - Number(window.drag.style.height.replace("px", ""));
+	    diff = diff < HEADER_H ? diff : HEADER_H;
+
+	    if(offset < (HEADER_H + Drag_SPACE_H) && offset > (diff - Drag_SPACE_H)){
+	    	window.drag.style.top = offset + 'px';
+	    }
+	}
+	
+	function stopDefault(e){ 
+		if(e && e.preventDefault){ 
+			e.preventDefault();  
+		}else{ 
+	        window.event.returnValue = false; 
+		}   
+	    return false; 
+	} 
+}
+
 function detectAndFit(){
 	var signinBar640 = $('#signin-bar-640');
 	var signinBar1024 = $('#signin-bar-1024');
@@ -123,8 +184,8 @@ function detectAndFit(){
 	
 	$('.banner-img')[0].width = ($('.banner-img')[0].width < (CLIENT_W - BANNER_SPARE_2W) ? $('.banner-img')[0].width : (CLIENT_W - BANNER_SPARE_2W));
 	
-	var psychiclistH = (CLIENT_W % (PSYCHIC_IMG_W + PSYCHIC_SPARE_W*2))/2 - PSYCHIC_SPARE_W;
-	$('#psychic-list').css('left', psychiclistH + "px");
+	var psychiclistL = (CLIENT_W % (PSYCHIC_IMG_W + PSYCHIC_SPARE_W*2))/2;
+	$('#psychic-list').css('left', psychiclistL + "px");
 }
 
 function addMenuListeners(){

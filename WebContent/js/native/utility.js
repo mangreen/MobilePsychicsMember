@@ -79,6 +79,29 @@ function getElementsByClass(searchClass, domNode, tagName) {
     return el;
 
 }
+/** 
+ *  查找兄弟元素，並回傳物件
+ */
+function querySiblings(node, selector){
+	var parent; //父元素
+	var siblings = [];
+
+    //元素參數處理
+    if(typeof node === 'string'){
+        var node = document.querySelector(node);
+        !node && alert('findParents: node not found');
+    }
+    
+    parent = node.parentNode;
+	 
+	//依序往上遍尋
+	if (parent){
+		siblings = parent.querySelectorAll(selector);//兄弟元素Array
+		return siblings;
+	}
+	
+	return false;
+}
 /** 參考http://www.jb51.net/article/25832.htm
  *  查找最近的祖先元素，並回傳物件
  */

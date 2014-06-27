@@ -8,12 +8,13 @@ body{
 header{
 	background: #20314e;
 	width: 100%;
-	height: 70px;
+	height: 52px;
 	position: fixed;
 	z-index: 999999;
 }
 #logo{
-	background:url('../img/logo.png') no-repeat;
+	display: block;
+	/* background:url('../img/logo.png') no-repeat; */
 	width: 192px;
 	height: 52px;
 
@@ -28,24 +29,24 @@ header{
     float: left;
 }
 #nav-img{
-	background:url('../img/icon.png') no-repeat 0px -280px;
+	background:url('../img/icon.png') no-repeat 0px -208px;
 	outline: none;
 	border: 0;
-	width: 70px;
-	height: 70px;
+	width: 52px;
+	height: 52px;
 }
 #nav-unread{
 	border-radius: 10px;
 	color: #ffffff;
 	background: #ff0000;
 	position: relative;
-	top: -45px;
-	left: -30px;
+	top: -30px;
+	left: -25px;
 }
 
 #menu{
 	background: #bdcbd5;
-	width: 480px;
+	width: 260px;
 	height: 100%;
 	display: inline-block;
 	position: absolute;
@@ -56,6 +57,10 @@ header{
 	z-index: -1;
 }
 
+#menu-drag{
+	background: #bdcbd5;
+}
+
 #menu-list ul{
 	list-style:none;
 }
@@ -63,23 +68,23 @@ header{
 	width: 100%;
 	display: block;
 	list-style: none;
-	font-size: 32px;
+	font-size: 20px;
 } 
 #menu-list a{
 	width: 100%;
 	display: block;
 	text-decoration: none;
-	font-size: 32px;
+	font-size: 20px;
 	
 	border-top: #e5eaee 1px solid;
 	border-bottom: #78858d 1px solid;
 }
 
 .menu-cls{
-	height: 50px;
+	height: 36px;
 	background: #394852;
 	color: #7cbce6;
-	line-height: 50px;
+	line-height: 36px;
 /* 	text-align : center; */
 	
 	border-top: #54585a 1px solid;
@@ -88,66 +93,66 @@ header{
 
 .mcls-text{
 	display: block;
-	margin-left: 40px;
+	margin-left: 20px;
 }
 
 .menu-btn{
-	height: 80px;
+	height: 52px;
 	background: #bdcbd5;
 	color: #165582;
-	line-height: 80px;
+	line-height: 52px;
 /* 	text-align : center; */
 }
 
 .mbtn-text{
 	/* width: 250px; */
-	height: 80px;
+	height: 52px;
 	display: inline;
 	position: absolute;
-	left: 110px;
+	left: 70px;
 }
 
 #mail-unread{
 	height: 80px;
 	display: inline;
 	position: absolute;
-	left: 240px;
+	left: 150px;
 }
 
 .mbtn-img{
-	width: 70px;
-	height: 70px;
+	width: 52px;
+	height: 52px;
 	display: inline-block;
 	
-	margin: 5px 0px 0px 30px;
+	margin: 0px 0px 0px 10px;
 }
 
 #mbtn-onine{
 	background:url('../img/icon.png') no-repeat 0px 0px;
 }
 #mbtn-category{
-	background:url('../img/icon.png') no-repeat -140px 0px;
+	background:url('../img/icon.png') no-repeat -104px 0px;
 }
 #mbtn-search{
-	background:url('../img/icon.png') no-repeat -280px 0px;
+	background:url('../img/icon.png') no-repeat -208px 0px;
 }
 #mbtn-profile{
-	background:url('../img/icon.png') no-repeat 0px -70px;
+	background:url('../img/icon.png') no-repeat 0px -52px;
 }
 #mbtn-funds{
-	background:url('../img/icon.png') no-repeat -140px -70px;
+	background:url('../img/icon.png') no-repeat -104px -52px;
 }
 #mbtn-account{
-	background:url('../img/icon.png') no-repeat -280px -70px;
+	background:url('../img/icon.png') no-repeat -208px -52px;
 }
 #mbtn-favorite{
-	background:url('../img/icon.png') no-repeat 0px -140px;
+	background:url('../img/icon.png') no-repeat 0px -104px;
 }
 #mbtn-mail{
-	background:url('../img/icon.png') no-repeat -140px -140px;
+	background:url('../img/icon.png') no-repeat -104px -104px;
 }
 #mbtn-mail.mbtn-mail-unread{
-	background:url('../img/icon.png') no-repeat -280px -280px;
+	background:url('../img/icon.png') no-repeat -208px -208px;
 }
 
 #menu-list li.mbtn-m-li-hide{
@@ -155,23 +160,23 @@ header{
 }
 
 #mbtn-horoscope{
-	background:url('../img/icon.png') no-repeat -280px -140px;
+	background:url('../img/icon.png') no-repeat -208px -104px;
 }
 #mbtn-article{
-	background:url('../img/icon.png') no-repeat 0px -210px;
+	background:url('../img/icon.png') no-repeat 0px -156px;
 }
 #mbtn-help{
-	background:url('../img/icon.png') no-repeat -140px -210px;
+	background:url('../img/icon.png') no-repeat -104px -156px;
 }
 #mbtn-logout{
-	background:url('../img/icon.png') no-repeat -280px -210px;
+	background:url('../img/icon.png') no-repeat -208px -156px;
 }
 
 #menu-footer{
 	width: 100%;
 	height: 300px;
 
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #menu-a{
@@ -184,13 +189,14 @@ header{
 	display: block;
 	margin-top: 20px;
 	text-align: center;
+	font-size: 14px;
 }
 
 #menu-claim{
 	display: block;
-	width: 440px;
+	width: 240px;
 	height: 100px;
-	font-size: 14px;
+	font-size: 10px;
 	color: #7c858c;
 	
 	margin: 0 auto;
@@ -202,10 +208,11 @@ header{
 }
 
 .mfat{
-	margin: 10px 10px 10px 10px;
+	margin: 5px 5px 5px 5px;
 	color: #1893bc;
-	height: 32px;
-	line-height: 32px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 14px;
 }
 
 #content{
@@ -220,11 +227,15 @@ header{
 	overflow: hidden;
 }
 
+#content-drag{
+	background: white;
+}
+
 .drag-panel{
 	width: 100%;
 /* 	height: 100%; */
 	position: absolute;
-	top: 70px;
+	top: 52px;
 }
 
 #member{
@@ -233,13 +244,13 @@ header{
 
 #signin-bar-640{
 	width: 100%;
-	height: 100px;
+	height: 80px;
 	position: relative;
 }
 #signin-bar-1024{
 	float: right;
- 	margin-top:-37px;
-	margin-right:10px; 
+ 	margin-top: -40px;
+	margin-right: 5px; 
 }
 .join-free-btn{
 	background: #ffd001;
@@ -251,29 +262,31 @@ header{
 }
 .signin-btn-640{
 	width: 50%;
-	height: 70px;
+	height: 52px;
 	text-align: center;
-	line-height:70px;
-	font-size: 28px;
+	line-height: 52px;
+	font-size: 21px;
 	float: left;
 	margin-top: 15px;
 }
 
 .signin-btn-1024{
-	width: 110px;
-	height: 40px;
+	width: 90px;
+	height: 30px;
 	text-align: center;
-	line-height:40px;
-	font-size: 16px;
+	line-height: 30px;
+	font-size: 12px;
 	float: left;
 	margin-right:10px;
 }
 #banner{
 	width: 100%;
-	height: 150px;
-	line-height: 150px; 
+/* 	height: 120px;
+	line-height: 120px; */
 	text-align : center;
 	position: relative;
+	
+	margin: 5px 0px 10px 0px;
 }
 #banner img{
 	vertical-align : middle;
@@ -287,7 +300,7 @@ header{
 
 .psychic-wrap{
 	display: inline-block;
-    width: 200px;
+    width: 100px;
 	margin: 10px 10px 10px 10px;
 }
 .psychic-a{
@@ -300,22 +313,23 @@ header{
 .psy-name{
 	display: block;
 	width: 100%;
-	height: 30px;
+	height: 20px;
 	color: #ffffff;
 	text-shadow: 1px 1px 0px #000000, -1px -1px 0px #000000; 
 	background: rgba(0, 0, 0, 0.6);
-	line-height: 30px;
+	font-size: 0.8em;
+	line-height: 20px;
 	text-align: center;
 	
 	position: relative;
 	z-index: 1;
-	margin-top: -30px;
+	margin-top: -20px;
 }
 
 #page-wrap{
 	width: 100%;
 	position: relative;
-	line-hight: 120px;
+	
 	text-align : center;
 	top: 10px;
 }
@@ -325,16 +339,16 @@ header{
 #page-wrap li{ 
 	display: inline-block;
 	list-style: none;
-	margin: 10px 10px 10px 10px;
+	margin: 5px 5px 5px 5px;
 } 
 #page-wrap a{
-	width: 70px;
-	height: 70px;
-	line-height : 70px; 
+	width: 30px;
+	height: 30px;
+	line-height : 30px; 
 	text-align : center;
 	display: block;
 	text-decoration: none;
-	font-size: 32px;
+	font-size: 20px;
 }
 
 .page{

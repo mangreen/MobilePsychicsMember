@@ -11,15 +11,16 @@ function delegatePsychic(){
  * 取得Psychic List
  */
 function getPsychicList(page){
+	
 	$.ajax({
 		type: "POST",
-		url : 'http://dev.ffn.tw/Psychic/app/get_psychic_list',
+		url : URL_APP+'get_psychic_list',
 		dataType: 'jsonp',
 		jsonp: "callback",//服务端用于接收callback调用的function名的参数  
 		data: { 
 			username: 'amykuo', 
 			page: page, 
-			pagesize: 16
+			pagesize: PAGESIZE
 		},
 		success: function(data){
 			//alert(data.psychics[0].name);
@@ -43,7 +44,7 @@ function getPsychicList(page){
 			cnosole.log("status: "+ textStatus); 
 			cnosole.log("error"+errorThrown);
 			
-			alert("E001: Fail to get psychic list");
+			alert(ERROR_001);
 		}  
 	});
 	
