@@ -1,4 +1,14 @@
 /**
+ * 在String物件中, 新增自訂義template函式
+ */
+String.prototype.template = function(obj) {
+    return this.replace(/\$\w+\$/gi, function(matchs) {
+        var returns = obj[matchs.replace(/\$/g, "")];		
+        return (returns + "") == "undefined"? "": returns;
+    });
+};
+
+/**
 @para parentId 包裹容器的id
 @para selector 容器內元素的選擇器，支持id和className
 @para fn 元素上要執行的函數

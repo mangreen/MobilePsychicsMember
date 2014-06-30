@@ -24,6 +24,7 @@ function getPsychicList(page){
 		},
 		success: function(data){
 			//alert(data.psychics[0].name);
+			/*
 			var pList = $('#psychic-list');
 			pList.html("");//清除原有內容
 
@@ -38,6 +39,20 @@ function getPsychicList(page){
 		    }
 			
 			pList.html(oPsy);//添加
+			*/
+			
+			//htmlTemp是textarea中的模板HTML
+			//var htmlList = '', htmlTemp = document.querySelector("textarea").value;
+			var htmlList = '', 
+				htmlTemp = document.querySelector("#tmpl-psylist").outerHTML;
+
+			// htmlList就是我們需要的HTML代碼啦！
+			data.psychics.forEach(function(object) {
+			    htmlList += htmlTemp.template(object);
+			});
+
+			$("#psychic-list").html(htmlList);
+			
 		},
 		error: function(jqXHR, textStatus, errorThrown ){
 			cnosole.log("xhr: "+jqXHR.status);

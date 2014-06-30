@@ -3,6 +3,16 @@
  * jquery-ui.js
  */
 
+/**
+ * 在String物件中, 新增自訂義template函式
+ */
+String.prototype.template = function(obj) {
+    return this.replace(/\$\w+\$/gi, function(matchs) {
+        var returns = obj[matchs.replace(/\$/g, "")];		
+        return (returns + "") == "undefined"? "": returns;
+    });
+};
+
 $( document ).ready(function() {
     //console.log( "ready!" );
 	
