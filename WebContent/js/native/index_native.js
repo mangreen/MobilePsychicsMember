@@ -25,7 +25,7 @@ addLoadEvent(addTouchListeners);
 addLoadEvent(setSignInAndUp);
 
 addLoadEvent(delegatePsychic);
-addLoadEvent(getPsychicList(1, PAGESIZE));
+//addLoadEvent(getPsychicList(1, PAGESIZE));
 
 
 /* 

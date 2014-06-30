@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 body{
-	font-family: 'Arial Bold', sans-serif;
+	font-family: 'Arial', sans-serif;
 	
 	overflow: hidden;
 }
@@ -13,8 +13,8 @@ header{
 	z-index: 999999;
 }
 #logo{
-	display: block;
-	/* background:url('../img/logo.png') no-repeat; */
+	/*display: block;*/
+	background:url('../img/logo.png') no-repeat;
 	width: 192px;
 	height: 52px;
 
@@ -24,7 +24,7 @@ header{
 	width: 100%;
 }
 #nav-btn-wrap{
-	display: inline-block;
+	/* display: inline-block; */
 
     float: left;
 }
@@ -42,6 +42,7 @@ header{
 	position: relative;
 	top: -30px;
 	left: -25px;
+	font-size: 12px;
 }
 
 #menu{
@@ -69,12 +70,12 @@ header{
 	display: block;
 	list-style: none;
 	font-size: 20px;
+	font-weight: bold;
 } 
 #menu-list a{
 	width: 100%;
 	display: block;
 	text-decoration: none;
-	font-size: 20px;
 	
 	border-top: #e5eaee 1px solid;
 	border-bottom: #78858d 1px solid;
@@ -104,6 +105,11 @@ header{
 /* 	text-align : center; */
 }
 
+.menu-btn:active{
+	background: #85929b;
+	color: #fff;
+}
+
 .mbtn-text{
 	/* width: 250px; */
 	height: 52px;
@@ -130,29 +136,64 @@ header{
 #mbtn-onine{
 	background:url('../img/icon.png') no-repeat 0px 0px;
 }
+.menu-btn:active #mbtn-onine{
+	background:url('../img/icon.png') no-repeat -52px 0px;
+}
+
 #mbtn-category{
 	background:url('../img/icon.png') no-repeat -104px 0px;
 }
+.menu-btn:active #mbtn-category{
+	background:url('../img/icon.png') no-repeat -156px 0px;
+}
+
 #mbtn-search{
 	background:url('../img/icon.png') no-repeat -208px 0px;
 }
+.menu-btn:active #mbtn-search{
+	background:url('../img/icon.png') no-repeat -260px 0px;
+}
+
 #mbtn-profile{
 	background:url('../img/icon.png') no-repeat 0px -52px;
 }
+.menu-btn:active #mbtn-profile{
+	background:url('../img/icon.png') no-repeat -52px -52px;
+}
+
 #mbtn-funds{
 	background:url('../img/icon.png') no-repeat -104px -52px;
 }
+.menu-btn:active #mbtn-funds{
+	background:url('../img/icon.png') no-repeat -156px -52px;
+}
+
 #mbtn-account{
 	background:url('../img/icon.png') no-repeat -208px -52px;
 }
+.menu-btn:active #mbtn-account{
+	background:url('../img/icon.png') no-repeat -260px -52px;
+}
+
 #mbtn-favorite{
 	background:url('../img/icon.png') no-repeat 0px -104px;
 }
+.menu-btn:active #mbtn-favorite{
+	background:url('../img/icon.png') no-repeat -52px -104px;
+}
+
 #mbtn-mail{
 	background:url('../img/icon.png') no-repeat -104px -104px;
 }
+.menu-btn:active #mbtn-mail{
+	background:url('../img/icon.png') no-repeat -156px -104px;
+}
+
 #mbtn-mail.mbtn-mail-unread{
 	background:url('../img/icon.png') no-repeat -208px -208px;
+}
+.menu-btn:active #mbtn-mail.mbtn-mail-unread{
+	background:url('../img/icon.png') no-repeat -260px -208px;
 }
 
 #menu-list li.mbtn-m-li-hide{
@@ -162,14 +203,29 @@ header{
 #mbtn-horoscope{
 	background:url('../img/icon.png') no-repeat -208px -104px;
 }
+.menu-btn:active #mbtn-horoscope{
+	background:url('../img/icon.png') no-repeat -260px -104px;
+}
+
 #mbtn-article{
 	background:url('../img/icon.png') no-repeat 0px -156px;
 }
+.menu-btn:active #mbtn-article{
+	background:url('../img/icon.png') no-repeat -52px -156px;
+}
+
 #mbtn-help{
 	background:url('../img/icon.png') no-repeat -104px -156px;
 }
+.menu-btn:active #mbtn-help{
+	background:url('../img/icon.png') no-repeat -156px -156px;
+}
+
 #mbtn-logout{
 	background:url('../img/icon.png') no-repeat -208px -156px;
+}
+.menu-btn:active #mbtn-logout{
+	background:url('../img/icon.png') no-repeat -260px -156px;
 }
 
 #menu-footer{
@@ -214,7 +270,9 @@ header{
 	line-height: 28px;
 	font-size: 14px;
 }
-
+.content-wrap{
+	display: none;
+}
 #content{
 	background: white;
 	width: 100%;
@@ -255,11 +313,22 @@ header{
 .join-free-btn{
 	background: #ffd001;
 	color: #666666;
+	font-weight: bold;
 }
+.join-free-btn:active{
+	background: #ff7901;
+	color: #fff;
+}
+
 .login-btn{
 	background: #1c90bb;
 	color: #ededed;
+	font-weight: bold;
 }
+.login-btn:active{
+	background: #156c8c;
+}
+
 .signin-btn-640{
 	width: 50%;
 	height: 52px;
@@ -349,6 +418,7 @@ header{
 	display: block;
 	text-decoration: none;
 	font-size: 20px;
+	font-weight: bold;
 }
 
 .page{

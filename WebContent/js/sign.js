@@ -2,9 +2,10 @@
  * 
  */
 function setSignInAndUp(){
+	setSingUiUx();
 	submitSignup();
 	submitLogin();
-	setSingUiUx();
+	updateEmail();
 }
 
 function setSingUiUx(){
@@ -74,6 +75,16 @@ function submitLogin(){
 
 		if(!liUsername.value && !liPassword.value){
 			$('#js-login-zero-fill').show();
+		}
+	});
+}
+
+function updateEmail(){
+	$('#new-mail-submit').click(function(){
+		var newEmail = $('#js-new-email');
+
+		if(!newEmail.value){
+			$('#js-new-mail-zero').show();
 		}
 	});
 }

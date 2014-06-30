@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="css/signup.css"/>
 
 <script type="text/javascript" src="js/param.js"></script>
-<!--
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>!window.jQuery && document.write('<script src="js/jquery/jquery-2.1.0.min.js"><\/script>');</script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -25,13 +25,13 @@
 <script type="text/javascript" src="js/member.js"></script>
 <script type="text/javascript" src="js/sign.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
--->
 
+<!--
 <script type="text/javascript" src="js/native/utility.js"></script>
 <script type="text/javascript" src="js/native/sign_native.js"></script>
 <script type="text/javascript" src="js/native/member_native.js"></script>
 <script type="text/javascript" src="js/native/index_native.js"></script>
-
+-->
 
 <title>SupremePsychics - Live Psychic Reading and Advice Online</title>
 </head>
@@ -42,7 +42,7 @@
 		<button id="nav-img"></button>
 		<span id="nav-unread">&nbsp;9&nbsp;</span>
 	</div>
-	<img id="logo" src="img/logo.png" alt="Supreme Psychics"></img>
+	<div id="logo" src="img/logo.png" alt="Supreme Psychics"></div>
 	<div id="signin-bar-1024">
 		<div id="join-free-1024" class="join-free-btn signin-btn-1024">Join Free</div>
 		<div id="login-1024" class="login-btn signin-btn-1024">Login</div>
@@ -356,7 +356,7 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="signup-submit" class="regi-lift regi-input regi-btn signup-submit" type="submit" value="Sign Up">Sign Up</div>
+	                		<div id="signup-submit" class="regi-lift regi-input regi-btn signup-submit">Sign Up</div>
 						</td>
 					</tr>
 					<tr>
@@ -377,7 +377,7 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="signup-submit-fb" class="regi-input regi-btn regi-lift" type="submit" value="Sign Up with Facebook">Sign Up with Facebook</div>
+	                		<div id="signup-submit-fb" class="regi-input regi-btn regi-fb regi-lift">Sign up with Facebook</div>
 						</td>
 					</tr>
 	            </table>
@@ -416,7 +416,7 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="login-submit" class="regi-input regi-btn" type="submit" value="Login">Login</div>
+	                		<div id="login-submit" class="regi-input regi-btn login-btn">Login</div>
 						</td>
 					</tr>
 					<tr>
@@ -433,7 +433,7 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<div id="signup-submit-fb" class="regi-input regi-btn" type="submit" value="Sign Up with Facebook">Sign Up with Facebook</div>
+	                		<div id="signin-submit-fb" class="regi-input regi-btn regi-fb">Signin with Facebook</div>
 						</td>
 					</tr>				
 	            </table>
@@ -443,12 +443,144 @@
 					<div class="suf-seperate"></div>
 					<div id="suf-wrap">
 		            	<div class="suf-no-account">Don't have an account?</div>
-		                <div class="join-free-btn regi-input regi-btn signup-submit" type="submit" value="Sign Up">Sign Up</div>
+		                <div class="join-free-btn regi-input regi-btn signup-submit">Sign Up</div>
 		            </div><!-- signup-free-wrap -->
 	            </div><!-- login-suf-wrap -->
 			</div><!-- login-wrap -->
+
+<!--------------------------------------------------- signup-sucess-wrap ---------------------------------------------------------->			
+			<div id="signup-sucess-wrap" class="content-wrap">
+				<div class="sus-content-wrap">
+					<div id="js-mail-change-ok" class="regi-warn-wrap sus-mail-change regi-warn-msg-lh35" style="display: block;">
+						<span>Email change successfully.</span>
+					</div>
+					<div id="js-mail-activation" class="regi-warn-wrap sus-mail-change regi-warn-msg-lh18" style="display: block;">
+						<span>Activation mail resent, please check your email for activation link.</span>
+					</div>
+					<br/>
+					<p class="nomail-title">One More Step to Finish Registration!</p>
+					<br/>
+					<h2>To activate your account, we need to ask you to confirm your email address.</h2>
+					<strong>Please check your email at <a class="regi-plc-a js-user-mail" href="#">member@ffn.com</a> for the activation link.</strong>
+					<h2>Until you log in, our professional psychics won't be able to provide accurate and quality readings to you.</h2>
+					<br/>
+					<h2>You have to verify your account within <strong>48 hours</strong> or your account will be deleted.</h2>
+					<br/>
+				</div><!-- sus-content-wrap -->
+				
+				<span class="sus-seperate"></span>
+				
+				<div id="nomail-wrap" class="sus-content-wrap">
+					<br/>
+					<p class="nomail-title">Don't get the email?</p>
+					<br/>
+					<ul>
+						<li>
+							<a href="#">
+								<span class="nomail-text">Check your spam folder.</span>
+								<span class="nomail-forward">&gt;&gt;</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="nomail-text">Is this the right email address?</span>
+								<span class="nomail-forward">&gt;&gt;</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="nomail-text">Resend the email.</span>
+								<span class="nomail-forward">&gt;&gt;</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="nomail-text">Contact customer service.</span>
+								<span class="nomail-forward">&gt;&gt;</span>
+							</a>
+						</li>
+					</ul>
+				</div><!-- nomail-wrap -->
+			</div><!-- signup-sucess-wrap -->
 			
-		
+<!--------------------------------------------------- check-spam-wrap ---------------------------------------------------------->				
+			<div id="check-spam-wrap" class="content-wrap">
+				<div class="sus-content-wrap">
+					<br/>
+					<p class="nomail-title">Check your spam folder</p>
+					<br/>
+				</div><!-- signup-sucess-wrap -->
+				<span class="sus-seperate"></span>
+				<br/>
+				<div class="sus-content-wrap">
+					<ol style="list-style-type: decimal;">
+						<li>Open your email client and locate your Junk/Spam folder.</li>
+						<li>Select the email from SupremePsychics.com.</li>
+						<li>Click the "Not Junk/Spam" button.</li>
+					</ol>
+				</div><!-- sus-content-wrap -->
+			</div><!-- check-spam-wrap -->
+
+<!--------------------------------------------------- new-mail-wrap ---------------------------------------------------------->
+			<div id="new-mail-wrap" class="content-wrap" style="display: block;">
+
+				<table id="signup-table" class="regi-table">
+					<tr>
+				    	<td>
+				    		<div id="js-new-mail-zero" class="regi-warn-wrap regi-warn-zero">
+								<span>All fields are required to be filled.</span>
+							</div>
+						</td>
+	                </tr>
+	                <tr>
+				    	<td>
+							<p class="nomail-title">Is this the right email address?</p>
+						</td>
+	                </tr>
+	                <tr>
+				    	<td>
+							<span class="sus-seperate"></span>
+						</td>
+	                </tr>
+	                <tr>
+				    	<td>
+							<span>If you entered the wrong email address, please update it here.</span>
+						</td>
+	                </tr>
+	                <tr>
+				    	<td>
+							<span class="regi-span">Username: <span class="js-username">MemberName01</span></span>
+						</td>
+	                </tr>
+	                <tr>
+				    	<td>
+							<span class="regi-span">Current Email: <span class="js-user-mail">member@ffn.com</span></span>
+						</td>
+	                </tr>
+					<tr>
+	                	<td>
+							<span class="regi-span">New Email</span><br/>
+							<input id="js-new-email" class="regi-input" type="text" name="new-email"/><br/>
+							<div class="regi-warn-wrap regi-warn-error">
+								<span>Enter your email.</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+	                	<td colspan="3">
+	                		<div id="new-mail-submit" class="regi-input regi-btn update-submit">Update</div>
+						</td>
+					</tr>
+					<tr>
+	                	<td colspan="3">
+	                	<br/>
+	                		<a class="regi-plc-a new-mail-cancel" href="#">Cancel</a>
+						</td>
+					</tr>
+	            </table>
+
+			</div><!-- new-mail-wrap -->
+
 			
 		</div><!-- content-drag -->
 	</div><!-- content -->

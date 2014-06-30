@@ -2,9 +2,10 @@
  * 
  */
 function setSignInAndUp(){
+	setSingUiUx();
 	submitSignup();
 	submitLogin();
-	setSingUiUx();
+	updateEmail();
 }
 
 function setSingUiUx(){
@@ -59,6 +60,17 @@ function submitLogin(){
 
 		if(!liUsername.value && !liPassword.value){
 			document.getElementById('js-login-zero-fill').style.display = "block";
+		}
+		
+	}, false);
+}
+
+function updateEmail(){
+	document.getElementById('new-mail-submit').addEventListener('click', function() {
+		var newEmail = document.getElementById('js-new-email');
+
+		if(!newEmail.value){
+			document.getElementById('js-new-mail-zero').style.display = "block";
 		}
 		
 	}, false);
