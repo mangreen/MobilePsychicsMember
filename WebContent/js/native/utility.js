@@ -1,4 +1,56 @@
 /**
+ * 自訂義extend函式
+ */
+void function(global){
+    var extend,
+        _extend,
+        _isObject;
+
+    _isObject = function(o){
+        return Object.prototype.toString.call(o) === '[object Object]';
+    };
+
+    _extend = function self(destination, source) {
+        var property;
+        for (property in destination) {
+            if (destination.hasOwnProperty(property)) {
+
+                // 若destination[property]和sourc[property]都是對象，則遞歸
+                if (_isObject(destination[property]) && _isObject(source[property])) {
+                    self(destination[property], source[property]);
+                };
+
+                // 若sourc[property]已存在，則跳過
+                if (source.hasOwnProperty(property)) {
+                    continue;
+                } else {
+                    source[property] = destination[property];
+                }
+            }
+        }
+    };
+
+    extend = function(){
+        var arr = arguments,
+            result = {},
+            i;
+
+        if (!arr.length) return {};
+
+        for (i = arr.length - 1; i >= 0; i--) {
+            if (_isObject(arr[i])) {
+                _extend(arr[i], result);
+            };
+        }
+
+        arr[0] = result;
+        return result;
+    };
+
+    global.extend = extend;
+}(window);
+
+/**
  * 在String物件中, 新增自訂義template函式
  */
 String.prototype.template = function(obj) {
@@ -8,6 +60,96 @@ String.prototype.template = function(obj) {
     });
 };
 
+/**
+ * 
+ */
+var Animate = Animate || {};
+Animate = {
+    fadeIn: function(element, speed) {
+        var speed = speed || 50;
+        var op = 0;  // initial opacity
+        element.style.opacity = op;
+        element.style.display = 'block';
+        var timer = setInterval(function () {
+            if (op >= 1 || op >= 1.0){
+                clearInterval(timer);
+            }
+            element.style.opacity = op.toFixed(1);
+            op += 0.1;
+        }, speed);
+    },
+    fadeOut: function(element, speed) {
+        var speed = speed || 50;
+        var op = 1;  // initial opacity
+        var timer = setInterval(function () {
+            if (op <= 0.1){
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = op.toFixed(1);
+            op -= 0.1;
+        }, speed);
+    }
+};
+
+/**讀取或設定用戶電腦的資訊片（cookie）
+ * 	1. domain=網路領域。只限此網路領域及其子領域，可以存取此資訊片。預設值為本頁所在的網域。
+ *     可設定的值為本頁的網域及其主網域。例如www.blog.com則其主網域為blog.com。
+ *	2. path=檔案路徑。只限此檔案路徑及其子路徑，可以存取此資訊片。預設值為本網頁所在目錄。
+ */
+var Cookies = Cookies || {};
+Cookies = {
+		//建立一個cookie    
+		setCookie: function(key, value, expire, domain, path){
+			var ck=key +'='+ encodeURIComponent(value);
+			if( expire ){
+				var epr = new Date();
+				epr.setTime(epr.getTime() + expire*1000 );
+				ck += ';expires='+epr.toUTCString();
+			}
+			if( domain ){
+				ck += ';domain='+domain;
+			}
+			if( path ){
+				ck += ';path='+path;
+			}
+			document.cookie = ck;
+		},
+		//讀取cookie
+		getCookie: function(key){
+			if( document.cookie.length === 0 ){   
+				return false;
+			}
+			var i = document.cookie.search(key+'=');
+			if( i == -1 ){
+				return false;
+			}
+			i += key.length+1;
+			var j = document.cookie.indexOf(';', i);
+			if( j == -1 ){   
+				j = document.cookie.length;
+			}
+			return document.cookie.slice(i,j);
+		},
+		//刪除cookie
+		delCookie: function(key){
+			setCookie(key, '', -2000);
+		},
+		//清空所有cookie
+		delAllCookies: function() {
+			var c = document.cookie.split("; ");
+			for (var i in c){
+				/* ^	比對輸入列的啟始位置
+		    	 * [^=] 不比對=
+		    	 */
+				document.cookie =/^[^=]+/.exec(c[i])+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+			
+		    	/*var eqPos = c[i].indexOf("=");
+		    	var name = eqPos > -1 ? c[i].substr(0, eqPos) : c[i];
+		    	document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";*/
+			}    
+		}
+};
 /**
 @para parentId 包裹容器的id
 @para selector 容器內元素的選擇器，支持id和className
@@ -234,13 +376,13 @@ function AjaxClass(opt){
         }
         
         if (!options.jsonp) {
-        	/*//創建 - 非IE6 - 第一步
+        	//創建 - 非IE6 - 第一步
             if (window.XMLHttpRequest) {
                 var xhr = new XMLHttpRequest();
             } else { //IE6及其以下版本瀏覽器
                 var xhr = new ActiveXObject('Microsoft.XMLHTTP');
-            }*/
-        	var xhr = window.XMLHttpRequest && (window.location.protocol !== 'file:' || !window.ActiveXObject) ?
+            }
+        	/*var xhr = window.XMLHttpRequest && (window.location.protocol !== 'file:' || !window.ActiveXObject) ?
     		        function() {//創建 - 非IE6 - 第一步
     		            return new XMLHttpRequest();
     		        } :
@@ -250,7 +392,7 @@ function AjaxClass(opt){
     		            } catch(e) {
     		                throw new Error('XMLHttpRequest not supported');
     		            }
-    		        };
+    		        };*/
 
             //接收 - 第三步
             xhr.onreadystatechange = function () {
@@ -266,14 +408,14 @@ function AjaxClass(opt){
             };
 
             //連接 和 發送 - 第二步
-            if (options.type == "GET") {
+            if (options.type === "GET") {
                 xhr.open("GET", options.url + "?" + formatParams(options.data), true);
                 xhr.send(null);
-            } else if (options.type == "POST") {
+            } else if (options.type === "POST") {
                 xhr.open("POST", options.url, true);
                 //設置表單提交時的內容類型
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send(params);
+                xhr.send(formatParams(options.data));
             }
         }else{
         	//創建 script 標籤並加入到頁面中

@@ -1,14 +1,19 @@
 @CHARSET "UTF-8";
 #signup-wrap{
 	width: 100%;
-	display: none;
+	/* display: none; */
 }
 .regi-table{
+	width: 300px;
 	margin: 0px auto;
 }
 .regi-table td{
-	width: 275px;
 	padding: 10px;
+}
+.spareroom{
+	display: block;
+	width: 100%;
+	height: 200px;
 }
 /******************************************** 
  *register warning message 
@@ -16,8 +21,8 @@
 .regi-warn-wrap{
 	display: none;
 	border-radius: 5px;
-	height: 35px;
-	font-size: 12px;
+	/* height: 35px; */
+	font-size: 14px;
 	font-weight: bold;
 }
 .regi-warn-error{
@@ -25,17 +30,11 @@
 	color: #fff;
 	border: 2px solid #dad9d9;
 	
-	line-height: 35px;
-	padding: 0px 0px 0px 15px;
-}
-.regi-warn-msg-lh35{
-	line-height: 35px;
+	line-height: 16px;
+	padding: 10px 15px 10px 15px;
 }
 
-.regi-warn-msg-lh18{
-	line-height: 18px;
-}
-#regi-warn-bith{
+.regi-warn-bith{
 	position: relative;
 	top: -35px;
 }
@@ -46,8 +45,18 @@
 	border: 2px solid #ff5252;
 	
 	line-height: 18px;
-	padding: 5px 0px 5px 15px;
+	padding: 5px 20px 5px 20px;
 	
+}
+
+.mail-change-msg{
+	background: #fff5bb;
+	color: #716e5c;
+	border: 2px solid #fdde51;
+	
+ 	line-height: 18px; 
+	padding: 5px 20px 5px 20px;
+	margin-top: 10px;
 }
 
 .regi-span{
@@ -56,7 +65,7 @@
 	font-weight: bold;
 }
 .regi-input{
-	width: 275px;
+	width: 100%;
 	height: 35px;
 	border: 2px solid #bfbfbf;
 	border-radius: 5px;
@@ -64,7 +73,7 @@
 }
 .regi-select{
 	width: 85px;
-	height: 35px;
+	height: 40px;
 	font-size: 16px;
 	border: 2px solid #bfbfbf;
 	border-radius: 5px;
@@ -78,16 +87,16 @@
 	line-height: 35px;
 	text-align:center;
 }
-#start-month{
+.birth-month{
 	display: block;
 	margin: 0px auto;
 	position: relative;
-	top: -35px
+	top: -40px
 }
-#start-day{
+.birth-day{
 	float: right;
 	position: relative;
-	top: -70px;
+	top: -80px;
 }
 
 /**********************
@@ -126,10 +135,11 @@
 	line-height: 25px;
 }
 .regi-plc-a{
-	/* text-decoration: none; */
+	text-decoration: none;
 	color: #279ac0;
 }
 .regi-plc-a:active{
+	text-decoration: underline;
 	color: #8bd1ec;
 }
 
@@ -158,7 +168,7 @@
 /******************************************** login ***********************************************/
 
  #login-wrap{
- 	display: none;
+ 	/* display: none; */
  }
  #login-suf-wrap{
  	margin-top: 40px;
@@ -204,9 +214,9 @@
 	margin: 0px auto;
 }
 
-/******************************************** signup-sucess ***********************************************/
+/******************************************** signup-success ***********************************************/
 
-#signup-sucess-wrap{ 
+#signup-success-wrap{ 
 	font-weight: normal;
 }
 .sus-content-wrap{
@@ -218,7 +228,7 @@
 	display: block;
 	width: 95%;
 	margin: 0px auto;
-	border-bottom: 2px solid #939292;
+	border-bottom: 1px solid #939292;
 }
 .sus-content-wrap strong{
 	font-weight: bold;
@@ -268,15 +278,8 @@
 	margin: 10px 0px 0px 20px;
 }
 
-.sus-mail-change{
-	background: #fff5bb;
-	color: #716e5c;
-	border: 2px solid #fdde51;
-	
-/* 	line-height: 35px; */
-	padding: 0px 15px 0px 15px;
-	margin-top: 10px;
-}
+/*TODO*/
+
 .update-submit{
 	background: #909090;
 	border-color: #8b8a8a;
@@ -294,4 +297,58 @@
 	display: block;
 	text-align: center;
 	font-weight: bold;
+}
+
+/******************************************** forgot-pwd ***********************************************/
+
+#forgot-pwd-zero-fill{
+	margin-top: 15px;
+}
+
+#recaptcha_challenge_image{
+	border: 1px solid #bfbfbf;
+}
+
+.forgot_pwd_icon{
+	display: inline-block;
+	width: 52px;
+	height: 52px;
+}
+.forgot_pwd_another{
+	background:url('../img/icon.png') no-repeat -104px -260px;
+}
+.forgot_pwd_if_image{
+	background:url('../img/icon.png') no-repeat -156px -260px;
+}
+.forgot_pwd_if_audio{
+	background:url('../img/icon.png') no-repeat -260px -260px;
+}
+.forgot_pwd_help{
+	background:url('../img/icon.png') no-repeat -208px -260px;
+}
+
+#recaptcha_image{
+	text-align: center;
+}
+
+#recaptcha_audio_play_again{
+	cursor: pointer;
+	text-decoration: none;
+	color: #279ac0;
+	font-weight: bold;
+}
+#recaptcha_audio_play_again:active{
+	text-decoration: underline;
+	color: #8bd1ec;
+}
+
+#recaptcha_audio_download{
+	line-height: 36px;
+	text-decoration: none;
+	color: #279ac0;
+	font-weight: bold;
+}
+#recaptcha_audio_download:active{
+	text-decoration: underline;
+	color: #8bd1ec;
 }

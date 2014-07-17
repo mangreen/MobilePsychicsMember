@@ -63,6 +63,20 @@ function chengeCotent(){
 		$("#content-drag").height($('#login-wrap').height());
 		$("#content-drag").css("top", HEADER_H+"px");
 	});
+	
+	$('#js-check-spam-btn').click(function(){
+		$('.content-wrap').hide();
+		$('#check-spam-wrap').show();
+		$("#content-drag").height($('#check-spam-wrap').height());
+		$("#content-drag").css("top", HEADER_H+"px");
+	});
+	
+	$('#js-is-right-mail-btn').click(function(){
+		$('.content-wrap').hide();
+		$('#new-mail-wrap').show();
+		$("#content-drag").height($('#new-mail-wrap').height());
+		$("#content-drag").css("top", HEADER_H+"px");
+	});
 }
 
 function setDraggable(dragTarget){

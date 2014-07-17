@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>HTML5 History Test</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>!window.jQuery && document.write('<script src="js/jquery/jquery-2.1.0.min.js"><\/script>');</script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>!window.jQuery && document.write('<script src="js/jquery/jquery-ui-1.10.4.custom.min.js"><\/script>');</script>
+
+<script>
+$(function () {
+	$("input.nav-btn").click(function () {
+	    var $btn = $(this);
+	    //隱藏目前按鈕所在的div
+	    $btn.parent().hide();
+	    //由按鈕的data-nav屬性決定要顯示div的id
+	    $("#" + $btn.data("nav")).show();
+	    var st = "#" + $btn.data("nav");
+	    var url = "#" + $btn.data("nav");
+	    history.pushState({ "v": st }, "", url);
+	});
+	
+	/* $(window).bind("statechange", function () {
+        alert("statechange event!");
+    });
+	
+	//hash變化時觸發hashchange事件
+    $(window).bind('hashchange', function (e) {
+    	alert("hashchange event!");
+    }); */
+	
+    window.addEventListener("hashchange", function(e){
+    	//alert("hashchange event!");
+    	var hash = location.hash.substr(1);
+		console.log(hash);
+    	//由hash取出step參數，決定要顯示哪一個div
+        $("#main > div").hide();
+        $("#" + hash).show();
+
+    }, false);
+});
+</script>
+<style>
+#main div { width: 300px; height: 200px; padding: 10px; }
+#s1 { background-color: #ff7777; }
+#s2 { background-color: #77ff77; display: none;}
+#s3 { background-color: #7777ff; display: none;}
+</style>
+</head>
+<body>
+	<div id="main">
+	    <div id="s1">
+	    	STEP1
+	    	<input type="button" class="nav-btn" value="Next" data-nav="s2" />
+	    </div>
+	    <div id="s2">
+	    	STEP2
+	    	<input type="button" class="nav-btn" value="Next" data-nav="s3" />
+	    </div>
+	    <div id="s3">
+	    	FINAL
+	    	<input type="button" value="Submit" />
+	    </div>
+	</div>
+</body>
+</html>

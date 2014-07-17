@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/native/utility.js"></script>
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+<!-- Wrapping the Recaptcha create method in a javascript function -->
+<script type="text/javascript">
+function showRecaptcha(element) {
+	Recaptcha.create("6LfUofYSAAAAAIFpUbAfDvcbh523BhaxBIYe6oTk", element, {
+    	theme: "red",
+    	callback: Recaptcha.focus_response_field
+    });
+}
+
+function myIP() {
+    if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+    xmlhttp.open("GET","http://api.hostip.info/get_html.php",false);
+    xmlhttp.send();
+
+    hostipInfo = xmlhttp.responseText.split("\n");
+
+    for (i=0; hostipInfo.length >= i; i++) {
+        ipAddress = hostipInfo[i].split(":");
+        if ( ipAddress[0] == "IP" ) return ipAddress[1];
+    }
+
+    return false;
+}
+var clientIP = myIP();
+function verifyRecaptcha(){
+	AjaxClass({
+        url: 'http://www.google.com/recaptcha/api/verify', //請求地址
+        type: "POST", //請求方式
+        //jsonp: 'callback',
+        //time: 10000, //超時參數設置
+        data: { 
+        	privatekey : "6LfUofYSAAAAAMtHZIbayGF3Wca528oYRQLJq6pv", 
+        	remoteip: clientIP,
+        	challenge : document.querySelector("#recaptcha_challenge_field").value,
+        	response : document.querySelector("#recaptcha_response_field").value
+		},
+		success : function(data) { // 此處放成功後執行的代碼
+			alert("Success: "+data);					
+        },
+        fail : function(status) { // 此處放失敗後執行的代碼
+        	alert("Fail");
+        }
+	});
+}
+
+</script>
+</head>
+<body>
+
+	<script type="text/javascript"
+       src="http://www.google.com/recaptcha/api/challenge?k=6LfUofYSAAAAAIFpUbAfDvcbh523BhaxBIYe6oTk">
+    </script>
+    <noscript>
+       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfUofYSAAAAAIFpUbAfDvcbh523BhaxBIYe6oTk"
+           height="100" width="300" frameborder="0"></iframe><br>
+       <textarea id="recaptcha_challenge_field" name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+       <input id="recaptcha_response_field" type="hidden" name="recaptcha_response_field" value="manual_challenge">
+    </noscript>
+    <button type="button" onclick="verifyRecaptcha();">Verify</button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div id="recaptcha_div"></div>
+    <input type="button" value="Show reCAPTCHA" onclick="showRecaptcha('recaptcha_div');"></input>
+   
+</body>
+</html>

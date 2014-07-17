@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+/******************************************** psy-profile ***********************************************/
+.psypf-info-wrap{
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 20px 0px 20px 0px;	
+}
+.feedback-btn{
+	cursor: pointer;
+	float: right;
+	margin-top: 12px;
+	width: 80px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	font-weight: bold;	
+	text-align: center;
+	background: #d1d1d1;
+	color: #676767;
+}
+.feedback-btn:active{
+	background: #b5b5b5;
+	color: #fff;
+	width: 90%;	
+}
+.psypf-content-wrap{
+	width: 90%;
+	margin: 0px auto;
+	clear: both;
+	padding: 10px;	
+}
+
+.psypf-photo-wrap{
+	float: left;
+	width: 50%;
+}
+.psypf-photo{
+	display: block;
+	height: 300px;
+	margin: 0px auto;
+}
+.psypf-reading-wrap{
+	float: right;
+	width: 50%;
+}
+.psypf-reading-btn{
+	display: inline-block;
+	width: 100%;
+	height: 60px;
+	border-radius: 5px;
+	color: #fff;
+	margin: 20px 0px 20px 0px;
+}
+.email-reading-btn{
+	border: 1px solid #2c065b;
+	background: #5c358c;	
+}
+.email-reading-btn:active{
+	border: 1px solid #4e0d9f;
+	background: #814bc4;	
+}
+.phone-reading-btn{
+	border: 1px solid #003367;
+	background: #14569a;	
+}
+.phone-reading-btn:active{
+	border: 1px solid #0056ae;
+	background: #1d7cde;	
+}

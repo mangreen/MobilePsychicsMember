@@ -15,19 +15,99 @@ function addLoadEvent(newFunction){
 	}
 }
 
+addLoadEvent(checkCookies);
 addLoadEvent(showMoreMenu);
 addLoadEvent(addMenuListeners);
 addLoadEvent(detectAndFit);
-addLoadEvent(chengeCotent);
+addLoadEvent(addCotentListener);
 addLoadEvent(addDragListeners);
 addLoadEvent(addTouchListeners);
 
 addLoadEvent(setSignInAndUp);
 
 addLoadEvent(delegatePsychic);
-addLoadEvent(getPsychicList(1, PAGESIZE));
+addLoadEvent(getPsychicList(1));
 
+//確定有沒有cookie裡面有沒有token,有就進入login模式
+function checkCookies(){
+	//Cookies.delAllCookies();
+	if(Cookies.getCookie("token") !== false){
+		setLoginStatus();
+	}
+}
+function setLoginStatus(){
+	if(Cookies.getCookie("username") !== false){
+		[].forEach.call(document.querySelectorAll('.js-username'), function (el) {
+			el.innerHTML = Cookies.getCookie("username");
+		});
+	}
+	
+	if(Cookies.getCookie("balance") !== false){
+		[].forEach.call(document.querySelectorAll('.js-balance'), function (el) {
+			el.innerHTML = Cookies.getCookie("balance");
+		});
+	}
+	
+	[].forEach.call(document.querySelectorAll('.js-is-logout'), function (el) {
+		el.style.display = "none";
+	});
+	
+	[].forEach.call(document.querySelectorAll('.js-is-login'), function (el) {
+		el.style.display = "block";
+	});
+	
+	document.querySelectorAll('.js-is-logout')
+}
 
+/* 
+ * 改變#content的內容
+ */
+function addCotentListener(){
+	var joinFreeBtn = document.getElementsByClassName('join-free-btn'); 
+	var loginBtn = document.getElementsByClassName('login-btn');
+	document.getElementById('content-drag').style.height = document.getElementById('member').offsetHeight + "px";
+	//點擊#logo
+	document.getElementById('logo').addEventListener('click', function() {
+		changeContentWrap("member");
+	}, false);
+	//點擊.join-free-btn
+	for(var i in joinFreeBtn){
+		if(isNaN(i)){ break; }
+		joinFreeBtn[i].addEventListener('click', function() {
+			changeContentWrap("signup-wrap");	
+		}, false);
+	}	
+	//點擊.login-btn
+	for(var i in loginBtn){
+		if(isNaN(i)){ break; }
+		loginBtn[i].addEventListener('click', function() {
+			changeContentWrap("login-wrap");	
+		}, false);
+	}
+	
+	//點擊#js-check-spam-btn
+	document.querySelector('#js-check-spam-btn').addEventListener('click', function() {
+		changeContentWrap("check-spam-wrap");
+	}, false);
+	//點擊#js-is-right-mail-btn
+	document.querySelector('#js-is-right-mail-btn').addEventListener('click', function() {
+		changeContentWrap("new-mail-wrap");
+	}, false);
+	
+}
+
+function changeContentWrap(targetWrapID){
+	var contentWrap = document.getElementsByClassName('content-wrap');
+	
+	for(var j in contentWrap){
+		if(isNaN(j)){ break; }
+		contentWrap[j].style.display = "none";
+	}
+	
+	document.getElementById(targetWrapID).style.display = "block";
+	document.getElementById('content-drag').style.top = HEADER_H+"px";
+	document.getElementById('content-drag').style.height = document.getElementById(targetWrapID).offsetHeight + "px";
+}
 /* 
  * 點擊Menu上的More秀出更多menuBtn 
  */
@@ -42,71 +122,24 @@ function showMoreMenu(){
 			if(mbtnMoreLi[i].className.indexOf('mbtn-m-li-hide') === -1){
 				addClass('mbtn-m-li-hide', mbtnMoreLi[i]);
 			}else{
-				removeClass('mbtn-m-li-hide', mbtnMoreLi[i]);
+				if(mbtnMoreLi[i].id === "js-mbtn-logout"){
+					if(Cookies.getCookie("token") !== false){
+						removeClass('mbtn-m-li-hide', mbtnMoreLi[i]);
+					}
+				}else{
+					removeClass('mbtn-m-li-hide', mbtnMoreLi[i]);
+				}
 			}
 
 		}
 		
 	}, false);
 }
-/* 
- * 改變#content的內容
- */
-function chengeCotent(){
-	var joinFreeBtn = document.getElementsByClassName('join-free-btn'); 
-	var loginBtn = document.getElementsByClassName('login-btn');
-	document.getElementById('content-drag').style.height = document.getElementById('member').offsetHeight + "px";
-	//點擊#logo
-	document.getElementById('logo').addEventListener('click', function() {
-		hideContentWrapClass();
-		
-		document.getElementById('member').style.display = "block";
-		setContentTopAndHeight(document.getElementById('member'));
-		
-	}, false);
-	//點擊.join-free-btn
-	for(var i in joinFreeBtn){
-		if(isNaN(i)){ break; }
-		joinFreeBtn[i].addEventListener('click', function() {
-	
-			hideContentWrapClass();
-			
-			document.getElementById('signup-wrap').style.display = "block";
-			setContentTopAndHeight(document.getElementById('signup-wrap'));
-			
-		}, false);
-	}	
-	//點擊.login-btn
-	for(var i in loginBtn){
-		if(isNaN(i)){ break; }
-		loginBtn[i].addEventListener('click', function() {
-	
-			hideContentWrapClass();
-			
-			document.getElementById('login-wrap').style.display = "block";
-			setContentTopAndHeight(document.getElementById('login-wrap'));
-			
-		}, false);
-	}
-	//把所有帶有content-wrap屬性的區塊隱藏
-	function hideContentWrapClass(){
-		var contentWrap = document.getElementsByClassName('content-wrap');
-		
-		for(var j in contentWrap){
-			if(isNaN(j)){ break; }
-			contentWrap[j].style.display = "none";
-		}
-	}
-	//設定#content的top, height
-	function setContentTopAndHeight(contentElement){
-		document.getElementById('content-drag').style.top = HEADER_H+"px";
-		document.getElementById('content-drag').style.height = contentElement.offsetHeight + "px";
-	}
-}
-
 /*點擊menu-btn彈出彈回選單*/
 function addMenuListeners(){
 	//alert("ready");
+	var userWrap = document.getElementById('user-wrap');
+	
 	var navBtn = document.getElementById('nav-btn-wrap');
 	var content = document.getElementById('content');
 	var menu = document.getElementById('menu');
@@ -174,13 +207,20 @@ function addMenuListeners(){
 				content.style.left = "0px";
 				menuDrag.style.top = HEADER_H+"px";
 				document.getElementById('nav-btn-wrap').style.cssFloat = "left";
+				document.getElementById('logo').style.cssFloat = "";
+				
+				if(Cookies.getCookie("token") === true){
+					userWrap.style.display = "block";
+				}
 			}else if(isMenu){
 				content.style.left = MENU_W+"px";
 				document.getElementById('nav-btn-wrap').style.cssFloat = "right";
-			}
-			
-			
-			
+				document.getElementById('logo').style.cssFloat = "left";
+				
+				if(Cookies.getCookie("token") === true){
+					userWrap.style.display = "none";
+				}
+			}		
 		}else{
 			if(menu.style.zIndex !== "9" && isMenu){
 				menu.style.zIndex = "9";
@@ -194,11 +234,13 @@ function addMenuListeners(){
 }
 /*偵測螢幕寬度改變各個物件大小*/
 function detectAndFit(){
+	var userWrap = document.getElementById('user-wrap');
 	var signinBar640 = document.getElementById('signin-bar-640');
 	var signinBar1024 = document.getElementById('signin-bar-1024');
 	var loginSufWrap = document.getElementById('login-suf-wrap');
 	//var banner = document.getElementById('banner');
 	//var psychiclist = document.getElementById('psychic-list');
+	var jsUser1024 = document.querySelectorAll('.js-user-1024');
 	
 	//螢幕改變大小時, 抓取body的偽類:after中的content, 判斷螢幕屬於大螢幕還是小螢幕 
 	var screenType = window.getComputedStyle(document.body, ":after").getPropertyValue("content");
@@ -212,27 +254,45 @@ function detectAndFit(){
 	if (/small/.test(screenType) || CLIENT_W < 1024) {
 		MODE = "small";
 		//console.log("small");
-		signinBar640.style.display = "block";
+		if(Cookies.getCookie("token") === false){
+			signinBar640.style.display = "block";
+			userWrap.style.display = "none";
+		}
 		signinBar1024.style.display = "none";
 		//banner.style.top = "85px";
 		//psychiclist.style.top = "235px";
 		loginSufWrap.style.display = "block";
+		
+		[].forEach.call(jsUser1024, function (el) {
+			el.style.display = "none";
+		});
 	}else{
 		MODE = "big";
 		//console.log("big");
 		signinBar640.style.display = "none";
-		signinBar1024.style.display = "block";
+		if(Cookies.getCookie("token") === false){
+			signinBar1024.style.display = "block";
+			userWrap.style.display = "none";
+		}
 		//banner.style.top = "0";
 		//psychiclist.style.top = "150px";
 		loginSufWrap.style.display = "none";
+		
+		[].forEach.call(jsUser1024, function (el) {
+			el.style.display = "inline";
+		});
 	}
-	
+	/*
 	var bannerImg = document.getElementsByClassName('banner-img')[0]; //HTML5開始支援 getElementsByClassName()方法
 	//var bannerImg = getElementsByClass('banner-img')[0];		
 	bannerImg.width = (bannerImg.width < (CLIENT_W - BANNER_SPARE_2W) ? bannerImg.width : (CLIENT_W - BANNER_SPARE_2W));
-	var BANNER_H = bannerImg.height;
+	//var BANNER_H = bannerImg.height;
 	//var psychicImg = document.getElementsByClassName('psychic-img')[0];
 	//psychicImg.width = CLIENT_W/(psychicImg.width);
+	*/
+	[].forEach.call(document.querySelectorAll('.banner-img'), function (el) {
+		el.width = (el.width < (CLIENT_W - BANNER_SPARE_2W) ? el.width : (CLIENT_W - BANNER_SPARE_2W));
+	});
 	
 	//var dragH = CLIENT_H - HEADER_H;
 	
