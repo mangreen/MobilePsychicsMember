@@ -1,3 +1,4 @@
+"use strict";//使用strict mode(嚴格模式)
 /** http://www.ewdna.com/2012/03/javascriptfunctionwindowonload.html
  *  http://www.jaceju.net/blog/archives/160/
  *  將多個function加到window.onload
@@ -16,20 +17,26 @@ function addLoadEvent(newFunction){
 }
 
 addLoadEvent(checkCookies);
-addLoadEvent(showMoreMenu);
+//addLoadEvent(showMoreMenu);
 addLoadEvent(addMenuListeners);
 addLoadEvent(detectAndFit);
 addLoadEvent(addCotentListener);
 addLoadEvent(addDragListeners);
 addLoadEvent(addTouchListeners);
+addLoadEvent(addHistoryListener);
 
 addLoadEvent(setSignInAndUp);
+addLoadEvent(setFunds);
 
-addLoadEvent(delegatePsychic);
-addLoadEvent(getPsychicList(1));
+addLoadEvent(setHompage);
+
+
 
 //確定有沒有cookie裡面有沒有token,有就進入login模式
 function checkCookies(){
+	//Cookies.setCookie("token", "123456789", COOKIE_EXPIRE);
+	//Cookies.setCookie("username", "abcdefghij", COOKIE_EXPIRE);
+	//Cookies.setCookie("balance", "98.7654321", COOKIE_EXPIRE);
 	//Cookies.delAllCookies();
 	if(Cookies.getCookie("token") !== false){
 		setLoginStatus();
@@ -56,7 +63,13 @@ function setLoginStatus(){
 		el.style.display = "block";
 	});
 	
-	document.querySelectorAll('.js-is-logout')
+	[].forEach.call(document.querySelectorAll('.mbtn-li-logout'), function (el) {
+		el.style.display = "none";
+	});
+	
+	[].forEach.call(document.querySelectorAll('.mbtn-m-li-hide'), function (el) {
+		el.style.display = "block";
+	});
 }
 
 /* 
@@ -74,39 +87,57 @@ function addCotentListener(){
 	for(var i in joinFreeBtn){
 		if(isNaN(i)){ break; }
 		joinFreeBtn[i].addEventListener('click', function() {
-			changeContentWrap("signup-wrap");	
+			changeContentWrap("signup");	
 		}, false);
 	}	
 	//點擊.login-btn
 	for(var i in loginBtn){
 		if(isNaN(i)){ break; }
 		loginBtn[i].addEventListener('click', function() {
-			changeContentWrap("login-wrap");	
+			changeContentWrap("login");	
 		}, false);
 	}
 	
 	//點擊#js-check-spam-btn
 	document.querySelector('#js-check-spam-btn').addEventListener('click', function() {
-		changeContentWrap("check-spam-wrap");
+		changeContentWrap("check-spam");
 	}, false);
 	//點擊#js-is-right-mail-btn
 	document.querySelector('#js-is-right-mail-btn').addEventListener('click', function() {
-		changeContentWrap("new-mail-wrap");
+		changeContentWrap("new-mail");
 	}, false);
-	
 }
 
-function changeContentWrap(targetWrapID){
+function changeContentWrap(targetWrapID, backFlag){
 	var contentWrap = document.getElementsByClassName('content-wrap');
 	
 	for(var j in contentWrap){
 		if(isNaN(j)){ break; }
 		contentWrap[j].style.display = "none";
 	}
-	
+
 	document.getElementById(targetWrapID).style.display = "block";
-	document.getElementById('content-drag').style.top = HEADER_H+"px";
+	//moveToTheTop();
 	document.getElementById('content-drag').style.height = document.getElementById(targetWrapID).offsetHeight + "px";
+	
+	if(!backFlag){
+		history.pushState({ page: targetWrapID }, "", "#"+targetWrapID);
+	}
+}
+
+function moveToTheTop(){
+	document.getElementById('content-drag').style.top = HEADER_H+"px";
+}
+
+function addHistoryListener(){
+	history.replaceState({ page: "member" }, "", "#member");
+	window.addEventListener("hashchange", function(e){
+		var hash = location.hash.substr(1);
+		//var currentState = history.state.page;
+		if(hash != ""){
+			changeContentWrap(hash, true);
+		}
+	}, false);
 }
 /* 
  * 點擊Menu上的More秀出更多menuBtn 
@@ -257,6 +288,17 @@ function detectAndFit(){
 		if(Cookies.getCookie("token") === false){
 			signinBar640.style.display = "block";
 			userWrap.style.display = "none";
+			
+			[].forEach.call(document.querySelectorAll('.mbtn-li-logout'), function (el) {
+				el.style.display = "block";
+			});
+		}else{
+			var logoR = parseInt(document.getElementById('logo').offsetLeft) + parseInt(document.getElementById('logo').offsetWidth);
+			
+			if(userWrap.offsetLeft < logoR){
+				var remain = CLIENT_W - logoR - parseInt(document.getElementById('js-user-fund-img').offsetWidth);
+				document.getElementById('js-user-a').style.width = remain + "px";
+			}
 		}
 		signinBar1024.style.display = "none";
 		//banner.style.top = "85px";
@@ -273,7 +315,13 @@ function detectAndFit(){
 		if(Cookies.getCookie("token") === false){
 			signinBar1024.style.display = "block";
 			userWrap.style.display = "none";
+		}else{
+			document.getElementById('js-user-a').style.width = "";
 		}
+		
+		[].forEach.call(document.querySelectorAll('.mbtn-li-logout'), function (el) {
+			el.style.display = "none";
+		});
 		//banner.style.top = "0";
 		//psychiclist.style.top = "150px";
 		loginSufWrap.style.display = "none";
@@ -377,11 +425,12 @@ function addTouchListeners(){
  * 為menu及content添加drage事件
  */
 function addDragListeners(){
-	var oldY, newY;
-	var diff, top;
+	var oldY, newY, oldX, newX;
+	var diffX, diff, top;
 	
 	document.getElementById('menu-drag').addEventListener('mousedown', mouseDown, false);
 	document.getElementById('content-drag').addEventListener('mousedown', mouseDown, false);
+
 	window.addEventListener('mouseup', mouseUp, false);
 	
     /*document.getElementById('menu-drag').addEventListener('touchstart', mouseDown, false);
@@ -395,80 +444,55 @@ function addDragListeners(){
 	    //}else if(e.currentTarget.id === "content-drag"){
 	    	window.removeEventListener('mousemove', dragContent, true);
 	    	//window.removeEventListener('touchmove', dragContent, true);
-	    //}*/	    
-	    
-		if(Number(window.drag.style.top.replace("px", "")) > HEADER_H){
-			window.drag.style.top = HEADER_H + 'px';
-	    }else if(Number(window.drag.style.top.replace("px", "")) < diff){
-	    	diff = (diff > HEADER_H) ? HEADER_H : diff;
-	    	window.drag.style.top = diff + 'px';
-	    }
-		
+	    //}*/
+		if(window.drag !== undefined){
+			if(window.drag.id === "menu-drag" || "content-drag"){
+				if(Number(window.drag.style.top.replace("px", "")) > HEADER_H){
+					window.drag.style.top = HEADER_H + 'px';
+			    }else if(Number(window.drag.style.top.replace("px", "")) < diff){
+			    	diff = (diff > HEADER_H) ? HEADER_H : diff;
+			    	window.drag.style.top = diff + 'px';
+			    }
+		    }
+		}
 		window.removeEventListener('mousemove', dragDiv, true);
 	}
 
 	function mouseDown(e){
 		oldY = e.screenY;
-		/*if(e.currentTarget.id === "menu-drag"){ //currentTarget為listener綁定對象
-	        window.addEventListener('mousemove', dragMenu, true);
-	        //window.addEventListener('touchmove', dragMenu, true);
-		}else if(e.target.id === "content-drag" || findParents(e.target, "content-drag")){ //target為點擊觸發對象
-	        window.addEventListener('mousemove', dragContent, true);
-	        //window.addEventListener('touchmove', dragContent, true);
-	    }*/
-		
-		window.addEventListener('mousemove', dragDiv, true);
-        //window.addEventListener('touchmove', dragContent, true);
-		if(e.currentTarget.id === "menu-drag"){
+
+		if(e.currentTarget.id === "menu-drag"){ 	
 			//抓取#menu-list及#menu-footer來設定#menu-drag的高度
 			var menuDragH = document.getElementById('menu-list').offsetHeight + document.getElementById('menu-footer').offsetHeight;
 			document.getElementById('menu-drag').style.height = menuDragH + "px";
 			
 	        window.drag = document.getElementById("menu-drag");
 	        window.drop = document.getElementById("menu");
+	        
+	        window.addEventListener('mousemove', dragDiv, true);
+	        top = Number(window.drag.style.top.replace("px", ""));
 		}else if(e.currentTarget.id === "content-drag"){
+			
 			window.drag = document.getElementById("content-drag");
 	        window.drop = document.getElementById("content");
-	    }
-		top = Number(window.drag.style.top.replace("px", ""));
+	        
+	        window.addEventListener('mousemove', dragDiv, true);
+	        top = Number(window.drag.style.top.replace("px", ""));
+	    } 
 	}
 
 	function dragDiv(e){
 		stopDefault(e);
-
 		newY = e.screenY;
 		
 	    var offset = newY - oldY + top;
 	    diff = Number(window.drop.style.height.replace("px", "")) - Number(window.drag.style.height.replace("px", ""));
 	    diff = diff < HEADER_H ? diff : HEADER_H;
-
+	    //console.log(newY+", "+oldY);
 	    if(offset < (HEADER_H + Drag_SPACE_H) && offset > (diff - Drag_SPACE_H)){
 	    	window.drag.style.top = offset + 'px';
 	    }
 	}
-	
-	/*function dragMenu(e){
-		newY = e.screenY;
-		
-	    var menuDrag = document.getElementById('menu-drag');
-	    var offset = newY - oldY + HEADER_H;
-	    var diff = Number(document.getElementById('menu').style.height.replace("px", "")) - Number(document.getElementById('menu-drag').style.height.replace("px", ""));
-	    if(offset < HEADER_H && offset > diff){
-	    	menuDrag.style.top = offset + 'px';
-	    }
-	}
-
-	function dragContent(e){
-		newY = e.screenY;
-		console.log(e.screenY);
-	    var contentDrag = document.getElementById('content-drag');
-
-	    var offset = newY - oldY + HEADER_H;
-	    var diff = Number(document.getElementById('content').style.height.replace("px", "")) - Number(document.getElementById('content-drag').style.height.replace("px", ""));
-	    if(offset < HEADER_H && offset > diff){
-	    	contentDrag.style.top = offset + 'px';
-	    }
-	}*/
 	
 	function stopDefault(e){ 
 		if(e && e.preventDefault){ 

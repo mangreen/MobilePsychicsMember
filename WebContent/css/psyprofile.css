@@ -24,33 +24,40 @@
 	color: #fff;
 	width: 90%;	
 }
-.psypf-content-wrap{
-	width: 90%;
+.psypf-photo-wrap{
+	width: 100%;
 	margin: 0px auto;
-	clear: both;
-	padding: 10px;	
+	padding-top: 20px;
+	overflow: auto;
 }
 
-.psypf-photo-wrap{
+.psypf-photo-div{
 	float: left;
-	width: 50%;
+	/* width: 50%; */
 }
 .psypf-photo{
 	display: block;
-	height: 300px;
+	/* height: 300px; */
 	margin: 0px auto;
 }
-.psypf-reading-wrap{
-	float: right;
-	width: 50%;
+
+.psypf-reading-table{
+	float: left;
+	/* width: 50%; */
+	/* height: 300px; */
+}
+.psypf-reading-table td{
+	vertical-align:middle;
+}
+.psypf-reading-div{
+	float: left;
 }
 .psypf-reading-btn{
-	display: inline-block;
-	width: 100%;
+	display: block;
+	width: 80%;
 	height: 60px;
 	border-radius: 5px;
 	color: #fff;
-	margin: 20px 0px 20px 0px;
 }
 .email-reading-btn{
 	border: 1px solid #2c065b;

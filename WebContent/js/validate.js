@@ -1,3 +1,4 @@
+"use strict";//使用strict mode(嚴格模式)
 /**
  * isEmail:email格式檢查 return true、false 
  * isDate:日期格式檢查 return true、false 

@@ -7,8 +7,9 @@
 	width: 300px;
 	margin: 0px auto;
 }
+
 .regi-table td{
-	padding: 10px;
+	padding: 10px 0 10px 0;
 }
 .spareroom{
 	display: block;
@@ -315,16 +316,16 @@
 	height: 52px;
 }
 .forgot_pwd_another{
-	background:url('../img/icon.png') no-repeat -104px -260px;
+	background:url('../img/icon.png') no-repeat -104px -52px;
 }
 .forgot_pwd_if_image{
-	background:url('../img/icon.png') no-repeat -156px -260px;
+	background:url('../img/icon.png') no-repeat -156px -52px;
 }
 .forgot_pwd_if_audio{
-	background:url('../img/icon.png') no-repeat -260px -260px;
+	background:url('../img/icon.png') no-repeat -260px -52px;
 }
 .forgot_pwd_help{
-	background:url('../img/icon.png') no-repeat -208px -260px;
+	background:url('../img/icon.png') no-repeat -208px -52px;
 }
 
 #recaptcha_image{

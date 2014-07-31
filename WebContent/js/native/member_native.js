@@ -1,6 +1,13 @@
+"use strict";//使用strict mode(嚴格模式)
 /**
  * 將.psy-a的click事件綁定在#psychic-list
  */
+
+function setHompage(){
+	delegatePsychic();
+	getPsychicList(1);
+}
+
 function delegatePsychic(){
   
 	delegate('psychic-list', 'onclick', 'psy-a', function(){	
@@ -11,11 +18,10 @@ function delegatePsychic(){
  *  取得Psychic list
  */
 function getPsychicList(page){
-	
-	
+
 	//PAGESIZE = Math.floor((CLIENT_W / (PSYCHIC_IMG_W + PSYCHIC_SPARE_W*2))) * Math.floor(((CLIENT_H-HEADER_H-BANNER_H-PAGE_WARP_H) / (PSYCHIC_IMG_H + PSYCHIC_SPARE_W*2)));
 	
-	var ajaxjsonp = new AjaxClass({
+	AjaxClass({
         url: URL_APP+'get_psychic_list', //請求地址
         type: "POST", //請求方式
         jsonp: 'callback',
@@ -45,11 +51,9 @@ function getPsychicList(page){
 			pList.insertAdjacentHTML("beforeend", oPsy);//添加
 			 */			
 			
-			//htmlTemp是textarea中的模板HTML
 			var htmlList = '', 
-				htmlTemp = document.querySelector("#tmpl-psylist").outerHTML;
+				htmlTemp = document.querySelector("#tmpl-psylist").innerHTML;
 
-			// htmlList就是我們需要的HTML代碼啦！
 			data.psychics.forEach(function(object) {
 			    htmlList += htmlTemp.template(object);
 			});
@@ -62,7 +66,7 @@ function getPsychicList(page){
         }
     });
 	
-	/*var ajaxpost = new AjaxClass({
+	/*new AjaxClass({
         type: 'POST',
         url: 'test.jsp',
         dataType: "json",

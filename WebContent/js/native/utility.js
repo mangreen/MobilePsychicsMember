@@ -1,3 +1,4 @@
+"use strict";//使用strict mode(嚴格模式)
 /**
  * 自訂義extend函式
  */
@@ -53,10 +54,15 @@ void function(global){
 /**
  * 在String物件中, 新增自訂義template函式
  */
-String.prototype.template = function(obj) {
-    return this.replace(/\$\w+\$/gi, function(matchs) {
-        var returns = obj[matchs.replace(/\$/g, "")];		
-        return (returns + "") == "undefined"? "": returns;
+String.prototype.template = function(obj, index) {
+    return this.replace(/\$([^\$]+)\$/gi, function(matchs) {
+    	var returns = "";
+        if(matchs === "$=i$"){
+        	returns = (typeof(index) === "undefined" ? "$=i$" : index);
+        }else{
+            returns = obj[matchs.replace(/\$/g, "")];	
+        }
+        return typeof(returns + "") === "undefined"? "": returns;
     });
 };
 
@@ -194,7 +200,7 @@ function delegate(parent, eventType, selector, fn){
         console.log("src id === "+target.id+"\ncurent target id == "+currentTarget.id+"\nparent id == "+target.parentNode.id);
 
         if(target.id === selector || target.className.indexOf(selector) != -1){
-            fn.call(target);
+            fn.call(target, evt);
         }else{
         	//當target不對時依序往上遍尋
 	        while (target.parentNode){
@@ -202,7 +208,7 @@ function delegate(parent, eventType, selector, fn){
 	            if (target.parentNode.id === parentId) { 
 	    	        break;
 	            }else if(target.parentNode.id === selector || target.parentNode.className.indexOf(selector) !== -1){
-	    	        fn.call(target.parentNode);
+	    	        fn.call(target.parentNode, evt);
 	    	        break;
 	            }
 	            
@@ -281,6 +287,13 @@ function findParents(node, selector){
 	return false;
 }
 /** 
+ * 自定義查詢class 
+ */
+function hasClass(classname, element){
+    var cn = element.className;
+    return cn.indexOf( classname ) !== -1 ? true : false;
+}
+/** 
  * 自定義增加class 
  */
 function addClass( classname, element ) {
@@ -352,8 +365,8 @@ function prependChild(parent , newNode){
 /**
  *  自定義 ajax & jsonp 類別
  */
-function AjaxClass(opt){
-	this.opt = opt;
+function AjaxClass(opts){
+	var opt = opts;
 	
 	//格式化參數
     function formatParams(data) {
@@ -448,7 +461,7 @@ function AjaxClass(opt){
         }   
     }
     
-	ajax(this.opt);
+	ajax(opt);
     
 }
 /*

@@ -59,8 +59,12 @@ var ERROR_008 = "Account waiting active";
 var ERROR_009 = "Api Fail: FB sign_up";
 var ERROR_010 = "Api Fail: FB login";
 var ERROR_011 = "FB login Fail";
-var ERROR_011 = "FB login Fail";
 var ERROR_012 = "Api Fail: get_viewer_balance";
+var ERROR_013 = "Api Fail: get_creditcard_list";
+var ERROR_014 = "Api Fail: delete_creditcard";
+var ERROR_015 = "Delete Creditcard Fail";
+var ERROR_016 = "Api Fail: get_country";
+var ERROR_017 = "Api Fail: add_credit";
 
 
 

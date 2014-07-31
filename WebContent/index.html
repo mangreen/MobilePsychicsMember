@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/reset.css"/>
 <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arial"> -->
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 <link rel="stylesheet" type="text/css" href="css/signup.css"/>
 <link rel="stylesheet" type="text/css" href="css/psyprofile.css"/>
@@ -30,10 +31,11 @@
 <script type="text/javascript" src="js/jquery/sign.js"></script>
 <script type="text/javascript" src="js/jquery/index.js"></script>
 -->
-
+<script type="text/javascript" src="js/native/utility.js"></script>
 <script type="text/javascript" src="js/native/utility.js"></script>
 <script type="text/javascript" src="js/native/sign_native.js"></script>
 <script type="text/javascript" src="js/native/member_native.js"></script>
+<script type="text/javascript" src="js/native/funds_native.js"></script>
 <script type="text/javascript" src="js/native/index_native.js"></script>
 
 
@@ -43,7 +45,7 @@
 
 <header id="header">
 	<div id="nav-btn-wrap">
-		<button id="nav-img"></button>
+		<div id="nav-img"></div>
 		<span class="nav-unread">&nbsp;<span id="js-nav-unread">999</span>&nbsp;</span>
 	</div>
 	<div id="logo" src="img/logo.png" alt="Supreme Psychics"></div>
@@ -55,42 +57,47 @@
 		<img src="img/divide.png" class="user-divide-img js-user-1024"></img>
 		<img src="img/snail.png" class="user-snail-img js-user-1024"></img>
 		<img src="img/divide.png" class="user-divide-img"></img>
-		<img src="img/fund.png" class="user-fund-img"></img>
-		<a class="user-a"><span class="user-name-span js-username">MemberName</span><br/>$&nbsp;<span class="user-fund-span js-balance">0</span></a>
+		<img id="js-user-fund-img" src="img/fund.png" class="user-fund-img"></img>
+		<a id="js-user-a" class="user-a"><span class="user-name-span js-username">MemberName</span><br/>$&nbsp;<span class="user-fund-span js-balance">0</span></a>
 	</div>
 </header>
 <div id="main">
 	<div id="menu">
 		<nav id="menu-drag" class="drag-panel">
 			<ul id="menu-list">
+				<li class="mbtn-li-logout login-btn"><a class="menu-btn"><span id="mbtn-login" class="mbtn-img"/></span>
+					<span class="mbtn-text">Login</span></a></li>
+				<li class="mbtn-li-logout join-free-btn"><a class="menu-btn"><span id="mbtn-join" class="mbtn-img"/></span>
+					<span class="mbtn-text">Join Free</span></a></li>
+					
 				<li class="menu-cls"><span class="mcls-text">Psychics</span></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-onine" class="mbtn-img"/></span>
+				<li><a class="menu-btn"><span id="mbtn-online" class="mbtn-img"/></span>
 					<span class="mbtn-text">Online Now</span></a></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-category" class="mbtn-img"/></span>
+				<li><a class="menu-btn"><span id="mbtn-category" class="mbtn-img"/></span>
 					<span class="mbtn-text">Categories</span></a></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-search" class="mbtn-img"/></span>
+				<li><a class="menu-btn"><span id="mbtn-search" class="mbtn-img"/></span>
 					<span class="mbtn-text">Search</span></a></li>
 				
-				<li class="menu-cls"><span class="mcls-text">My Account</span></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-profile" class="mbtn-img"/></span>
+				<li class="menu-cls mbtn-m-li-hide"><span class="mcls-text">My Account</span></li>
+				<li class="mbtn-m-li-hide"><a class="menu-btn"><span id="mbtn-profile" class="mbtn-img"/></span>
 					<span class="mbtn-text">My Profile</span></a></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-funds" class="mbtn-img"/></span>
+				<li class="mbtn-m-li-hide"><a class="menu-btn"><span id="mbtn-funds" class="mbtn-img"/></span>
 					<span class="mbtn-text">Add Funds</span></a></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-account" class="mbtn-img"/></span>
+				<li class="mbtn-m-li-hide"><a class="menu-btn"><span id="mbtn-account" class="mbtn-img"/></span>
 					<span class="mbtn-text">Account History</span></a></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-favorite" class="mbtn-img"/></span>
+				<li class="mbtn-m-li-hide"><a class="menu-btn"><span id="mbtn-favorite" class="mbtn-img"/></span>
 					<span class="mbtn-text">My Favorites</span></a></li>
-				<li><a class="menu-btn" href="#"><span id="mbtn-mail" class="mbtn-img mbtn-mail-unread"/></span>
+				<li class="mbtn-m-li-hide"><a class="menu-btn"><span id="mbtn-mail" class="mbtn-img mbtn-mail-unread"/></span>
 					<span class="mbtn-text">Mailbox</span><span id="mail-unread">(1000)</span></a></li>
 				
 				<li id="mbtn-more" class="menu-cls"><span class="mcls-text">More</span></li>
-				<li class="js-mbtn-m-li mbtn-m-li-hide"><a class="menu-btn" href="#"><span id="mbtn-horoscope" class="mbtn-img"/></span>
+				<li><a class="menu-btn"><span id="mbtn-horoscope" class="mbtn-img"/></span>
 					<span class="mbtn-text">Horoscope</span></a></li>
-				<li class="js-mbtn-m-li mbtn-m-li-hide"><a class="menu-btn" href="#"><span id="mbtn-article" class="mbtn-img"/></span>
+				<li><a class="menu-btn"><span id="mbtn-article" class="mbtn-img"/></span>
 					<span class="mbtn-text">Articles</span></a></li>
-				<li class="js-mbtn-m-li mbtn-m-li-hide"><a class="menu-btn" href="#"><span id="mbtn-help" class="mbtn-img"/></span>
+				<li><a class="menu-btn"><span id="mbtn-help" class="mbtn-img"/></span>
 					<span class="mbtn-text">Help</span></a></li>
-				<li id="js-mbtn-logout" class="js-mbtn-m-li mbtn-m-li-hide"><a class="menu-btn" href="#"><span id="mbtn-logout" class="mbtn-img"/></span>
+				<li id="js-mbtn-logout" class="js-mbtn-m-li mbtn-m-li-hide"><a class="menu-btn"><span id="mbtn-logout" class="mbtn-img"/></span>
 					<span class="mbtn-text">Logout</span></a></li>
 			</ul>
 			<div id="menu-footer">
@@ -116,7 +123,7 @@
 	
 	<div id="content">
 		<div id="content-drag" class="drag-panel">
-			<div id="member" class="content-wrap" style="display: none;">
+			<div id="member" class="content-wrap" style="display: block;">
 				<div id="signin-bar-640" class="js-is-logout">
 					<div id="join-free-640" class="join-free-btn signin-btn-640">Join Free</div>
 					<div id="login-640" class="login-btn signin-btn-640">Login</div>
@@ -128,112 +135,27 @@
 				</div>
 				
 				<div id="psychic-list">
-					
-										<div id="tmpl-psylist" class="psychic-wrap">
+					<div class="psychic-wrap">
 						<a id="$name$" class="psy-a"  href="#">
 							<img class="psy-img" src="$img$" alt="$name$" />
 							<span class="psy-name">$name$</span>
 						</a>
 					</div>
-					
 					<div class="psychic-wrap">
-						<a class="psy-a" href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot"/>
-							<span class="psy-name">Psychic Name</span>
+						<a id="$name$" class="psy-a"  href="#">
+							<img class="psy-img" src="$img$" alt="$name$" />
+							<span class="psy-name">$name$</span>
 						</a>
 					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a" href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot"/>
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a" href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot"/>
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a" href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot"/>
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a" href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot"/>
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					<div class="psychic-wrap">
-						<a class="psy-a"  href="#">
-							<img class="psy-img" src="img/snapshot.jpg" alt="Snapshot" />
-							<span class="psy-name">Psychic Name</span>
-						</a>
-					</div>
-					
 				</div><!-- psychic-list -->
+				<template id="tmpl-psylist">
+					<div class="psychic-wrap">
+						<a id="$name$" class="psy-a"  href="#">
+							<img class="psy-img" src="$img$" alt="$name$" />
+							<span class="psy-name">$name$</span>
+						</a>
+					</div>
+				</template>
 				
 				<div id="page-wrap">
 					<ul>
@@ -265,7 +187,7 @@
 
 <!--------------------------------------------------- signup-wrap ---------------------------------------------------------->
 			
-			<div id="signup-wrap" class="content-wrap">
+			<div id="signup" class="content-wrap">
 
 				<table id="signup-table" class="regi-table">
 					<tr>
@@ -414,19 +336,19 @@
 
 <!--------------------------------------------------- signup-fb-wrap ---------------------------------------------------------->
 			
-			<div id="signup-fb-wrap" class="content-wrap">
+			<div id="signup-fb" class="content-wrap">
 
 				<table class="regi-table">
 					<tr>
 				    	<td>
-				    		<span id="js-sufb--zero-fill" class="regi-warn-wrap regi-warn-zero">
+				    		<span id="js-sufb-zero-fill" class="regi-warn-wrap regi-warn-zero">
 								All fields are required to be filled.
 							</span>
 						</td>
 	                </tr>
 	                <tr>
 				    	<td>
-							<p class="nomail-title">Sign Up with Facebook</p>
+							<h1 class="nomail-title">Sign Up with Facebook</h1>
 						</td>
 	                </tr>
 	                <tr>
@@ -559,7 +481,7 @@
 			
 <!--------------------------------------------------- login-wrap ---------------------------------------------------------->
 			
-			<div id="login-wrap" class="content-wrap">
+			<div id="login" class="content-wrap">
 				<table id="login-table" class="regi-table">
 				    <tr>
 				    	<td>
@@ -593,7 +515,7 @@
 					</tr>
 					<tr>
 	                	<td colspan="3">
-	                		<a id="js-forgot-pwd-a" class="regi-plc-a regi-fgpw" href="#">Forgot your password?</a>
+	                		<a id="js-forgot-pwd-a" class="regi-plc-a regi-fgpw">Forgot your password?</a>
 						</td>
 					</tr>
 					<tr>
@@ -622,7 +544,7 @@
 			</div><!-- login-wrap -->
 
 <!--------------------------------------------------- signup-success-wrap ---------------------------------------------------------->			
-			<div id="signup-success-wrap" class="content-wrap">
+			<div id="signup-success" class="content-wrap">
 				<div class="sus-content-wrap">
 					<span id="js-mail-change-ok" class="regi-warn-wrap mail-change-msg">
 						Email change successfully.
@@ -631,13 +553,13 @@
 						Activation mail resent, please check your email for activation link.
 					</span>
 					<br/>
-					<p class="nomail-title">One More Step to Finish Registration!</p>
+					<h1 class="nomail-title">One More Step to Finish Registration!</h1>
 					<br/>
-					<h2>To activate your account, we need to ask you to confirm your email address.</h2>
+					<p>To activate your account, we need to ask you to confirm your email address.</p>
 					<strong>Please check your email at <a class="regi-plc-a js-user-mail" href="#">member@ffn.com</a> for the activation link.</strong>
-					<h2>Until you log in, our professional psychics won't be able to provide accurate and quality readings to you.</h2>
+					<p>Until you log in, our professional psychics won't be able to provide accurate and quality readings to you.</p>
 					<br/>
-					<h2>You have to verify your account within <strong>48 hours</strong> or your account will be deleted.</h2>
+					<p>You have to verify your account within <strong>48 hours</strong> or your account will be deleted.</p>
 					<br/>
 				</div><!-- sus-content-wrap -->
 				
@@ -645,7 +567,7 @@
 				
 				<div id="nomail-wrap" class="sus-content-wrap">
 					<br/>
-					<p class="nomail-title">Don't get the email?</p>
+					<h1 class="nomail-title">Don't get the email?</h1>
 					<br/>
 					<ul>
 						<li>
@@ -677,10 +599,10 @@
 			</div><!-- signup-sucess-wrap -->
 			
 <!--------------------------------------------------- check-spam-wrap ---------------------------------------------------------->				
-			<div id="check-spam-wrap" class="content-wrap">
+			<div id="check-spam" class="content-wrap">
 				<div class="sus-content-wrap">
 					<br/>
-					<p class="nomail-title">Check your spam folder</p>
+					<h1 class="nomail-title">Check your spam folder</h1>
 					<br/>
 				</div><!-- sus-content-wrap -->
 				<span class="sus-seperate"></span>
@@ -695,7 +617,7 @@
 			</div><!-- check-spam-wrap -->
 
 <!--------------------------------------------------- new-mail-wrap ---------------------------------------------------------->
-			<div id="new-mail-wrap" class="content-wrap">
+			<div id="new-mail" class="content-wrap">
 
 				<table class="regi-table">
 					<tr>
@@ -707,7 +629,7 @@
 	                </tr>
 	                <tr>
 				    	<td>
-							<p class="nomail-title">Is this the right email address?</p>
+							<h1 class="nomail-title">Is this the right email address?</h1>
 						</td>
 	                </tr>
 	                <tr>
@@ -760,19 +682,19 @@
 			</div><!-- new-mail-wrap -->
 
 <!------------------------------------------------ forgot-pwd ------------------------------------------------------->	
-			<div id="forgot-pwd-wrap" class="content-wrap">
+			<div id="forgot-pwd" class="content-wrap">
 				<div class="sus-content-wrap">
 					<span id="forgot-pwd-zero-fill" class="regi-warn-wrap regi-warn-zero">
 						Please enter your Username/Email and the Number Shown.
 					</span>
 					<br/>
-					<p class="nomail-title">Forgot your password?</p>
+					<h1 class="nomail-title">Forgot your password?</h1>
 					<br/>
 				</div><!-- sus-content-wrap -->
 				<span class="sus-seperate"></span>
 				<div class="sus-content-wrap">
 					<br/>
-					<h2 class="">An email will be sent to your registered email address with a link to set up a new password.</h2>
+					<p class="">An email will be sent to your registered email address with a link to set up a new password.</p>
 				</div><!-- sus-content-wrap -->
 				<table id="forgot-pwd-table" class="regi-table">
 				    <tr>
@@ -843,7 +765,7 @@
 
 <!------------------------------------------------ psy-profile ------------------------------------------------------->	
 			
-			<div id="psy-profile-wrap" class="content-wrap" style="display: none;">
+			<div id="psy-profile" class="content-wrap" style="display: none;">
 				<div class="sus-content-wrap">
 					<div class="psypf-info-wrap">
 						<span class="psypf-name">Psychic Name</span>
@@ -853,41 +775,68 @@
 					<div class="feedback-btn">Feedback</div>
 				</div><!-- sus-content-wrap -->
 				<span class="sus-seperate"></span>
-				<div class="psypf-content-wrap">
-					<div class="psypf-photo-wrap">
+				<div class="psypf-photo-wrap">
+					<div class="psypf-photo-div">
 						<img class="psypf-photo" src="img/snapshot.jpg" alt="Snapshot"/>
 						<img class="favor-icon"/>
 					</div>
-					<div class="psypf-reading-wrap">
-						<a class="psypf-reading-btn email-reading-btn">
-							<img class="email-reading-icon" src="" alt="Snapshot" />
-							<span class="email-reading-span">Email Reading</span>
-						</a>
-						<a class="psypf-reading-btn phone-reading-btn">
-							<img class="phone-reading-icon" src="" alt="Snapshot" />
-							<span class="phone-reading-span">Phone Reading</span>
-						</a>
-					</div>
+					<table class="psypf-reading-table">
+						<tr>
+							<td>
+							<div class="psypf-reading-div">
+								<a class="psypf-reading-btn email-reading-btn">
+									<img class="email-reading-icon" src="" alt="Snapshot" />
+									<span class="email-reading-span">Email Reading</span>
+								</a>
+							</div>
+							<div class="psypf-reading-div">						
+								<a class="psypf-reading-btn phone-reading-btn">
+									<img class="phone-reading-icon" src="" alt="Snapshot" />
+									<span class="phone-reading-span">Phone Reading</span>
+								</a>
+							</div>
+							</td>
+						</tr>
+					</table>
 				</div><!-- psypf-content-wrap -->
 				
 				<div class="sus-content-wrap">
-				
+					<section>
+						<h1>Tools</h1>
+						<p></p>
+					</section>
+					<section>
+						<h1>Brief Info</h1>
+						<p></p>
+					</section>
+					<section>
+						<h1>Keywords</h1>
+						<p></p>
+					</section>
+					<section>
+						<h1>Degrees</h1>
+						<p></p>
+					</section>
+					<section>
+						<h1>Qulifications</h1>
+						<p></p>
+					</section>
+					<section>
+						<h1>Description</h1>
+						<p></p>
+					</section>
 				</div><!-- sus-content-wrap -->
 				
 			</div><!-- psy-profile-wrap -->
 
-
-<!------------------------------------------------ add-funds ------------------------------------------------------->	
+<!------------------------------------------------ add-funds-old ------------------------------------------------------->	
 			
-			<div id="add-funds-wrap" class="content-wrap">
+			<div id="add-funds-old" class="content-wrap">
 				<div class="sus-content-wrap">
-					<div class="msg-margin-layer secured-msg-layer">
+					<div class="msg-margin-layer secured-msg-layer js-secured-page">
 						<span class="secured-msg">This is a secured page.</span>
 					</div>
-					<div id="js-card-fill-zero" class="regi-warn-wrap regi-warn-zero msg-margin-layer">
-						<span>All fields are required to be filled.</span>
-					</div>
-					<div id="js-card-info-fail" class="regi-warn-wrap regi-warn-zero msg-margin-layer">
+					<div class="regi-warn-wrap regi-warn-zero msg-margin-layer js-card-info-fail">
 						<span>
 							Please check your Card Number.<br/>
 							Please check the Credit Card Verification Number.<br/>
@@ -896,114 +845,186 @@
 					</div>
 					<div id="banner" class="msg-margin-layer">
 						<a class="banner-a" href="#">
-							<img id="banner-img" class="banner-img" src="img/FreeCradits.png" alt="Lifereader"/>
+							<img class="banner-img js-freecredits-img" src="img/FreeCredits.png" alt="Lifereader"/>
 						</a>
 					</div>
 				</div><!-- sus-content-wrap -->
 
-				<table class="regi-table">
-					<tr>
-	                	<td colspan="3">
+				<div class="regi-table">
+
 	                		<span class="regi-span">You Paid / You Can Get</span><br/>
 							<select id="add-funds-select" class="regi-select full-select" name="add-funds-select">
-								<option value=''>$0</option>
-	  							<option value='01'>$10</option>
-	  							<option value='02'>$20</option>
-	  							<option value='03'>$40</option>
-	  							<option value='04'>$50</option>
-	  							<option value='05'>$80</option>
-	  							<option value='06'>$100</option>
+								<option value='9'>$0 / $10</option>
+	  							<option value='2'>$10 / $10</option>
+	  							<option value='3'>$20 / $20</option>
+	  							<option value='4'>$40 / $40</option>
+	  							<option value='5'>$50 / $50</option>
+	  							<option value='6'>$80 / $80</option>
+	  							<option value='7'>$100 / $100</option>
 	  						</select> 
 							<br/>
 	  						<span class="add-funds-sapn"> 
 	  							Charges will appear on your credit card statement as "supremepsychics.com +14087021044".
 							</span>
-						</td>
-					</tr>
-	            </table>
+
+	            </div>
 				
 				<span class="sus-seperate"></span>
-				<!----------------------------- card-old-table ----------------------------->
-				<table id="card-old-table" class="regi-table">
-					<tr>
-				    	<td class="visa-td">
-				    		<p class="nomail-title">Payment Method</p>
-						</td>
-	                </tr>
-	                <tr>
-				    	<td>
-				    		<div class="card-div card-chose">
-								<div class="card-mdl">
-				    			<span class="card-holder">Jane Doe</span>
-				    			<br/>Number:XXXXXXXXXXXXXXXX<span class="card-num">0567</span>
-				    			<br/>Expiration date:<span class="card-expire">08/2020</span>
+				<!----------------------------- card-old-wrap ----------------------------->
+				<div>
+					<br/>
+					<h1 class="nomail-title">Payment Method</h1>
+					<br/>
+					<div id="js-card-old-list">
+						<div id="js-card-drop-1" class="card-old-drop">
+							<div id="js-card-del-1" class="regi-table card-del-div">
+								<a id="js-card-del-btn-1" class="card-del-btn">Delete it.</a><a id="js-card-undo-1" class="card-undo-btn">Undo</a>
+							</div>
+							<div id="js-card-drag-1" class="card-old-drag">
+								<div class="card-old-spare"></div>
+								<div id="js-card-div-1" class="regi-table card-div card-chose" data-id="1">
+									<div class="card-mdl">
+					    			<span class="card-holder">Jane Doe</span>
+					    			<br/>Number:XXXXXXXXXXXXXXXX<span class="card-num">0567</span>
+					    			<br/>Expiration date:<span class="card-expire">08/2020</span>
+									</div>
+					    		</div>
+							</div>
+						</div><!----------- card-old-drop ----------->
+						<div id="js-card-drop-2" class="card-old-drop">
+							<div id="js-card-del-2" class="regi-table card-del-div">
+								<a id="js-card-del-btn-2" class="card-del-btn">Delete it.</a><a id="js-card-undo-2" class="card-undo-btn">Undo</a>
+							</div>
+							<div id="js-card-drag-2" class="card-old-drag">
+								<div class="card-old-spare"></div>
+								<div id="js-card-div-2" class="regi-table card-div" data-id="1">
+									<div class="card-mdl">
+					    			<span class="card-holder">Jane Doe</span>
+					    			<br/>Number:XXXXXXXXXXXXXXXX<span class="card-num">0567</span>
+					    			<br/>Expiration date:<span class="card-expire">08/2020</span>
+									</div>
+					    		</div>
+							</div>
+						</div><!----------- card-old-drop ----------->
+					</div>
+					<template id="tmpl-card-old">
+							<div id="js-card-drop-$card_id$" class="card-old-drop">
+								<div id="js-card-del-$card_id$" class="regi-table card-del-div">
+									<a id="js-card-del-btn-$card_id$" class="card-del-btn">Delete it.</a><a id="js-card-undo-$card_id$" class="card-undo-btn">Undo</a>
 								</div>
-				    		</div>
-						</td>
-	                </tr>
-	                <tr>
-				    	<td>
-				    		<div class="card-div">
-								<div class="card-mdl">
-				    			<span class="card-holder">Jane Doe</span>
-				    			<br/>Number:XXXXXXXXXXXXXXXX<span class="card-num">0567</span>
-				    			<br/>Expiration date:<span class="card-expire">08/2020</span>
+								<div id="js-card-drag-$card_id$"  class="card-old-drag">
+									<div class="card-old-spare"></div>
+									<div id="js-card-div-$card_id$" class="regi-table card-div">
+										<div class="card-mdl">
+							    			$holder$
+							    			<br/>Number:$num$
+							    			<br/>Expiration date:$expire_date$
+										</div>
+						    		</div>
 								</div>
-				    		</div>
-						</td>
-	                </tr>
-					<tr>
-				    	<td>
-				    		<div class="card-div card-new">
-				    			<span>Use new credit card</span>
-				    		</div>
-						</td>
-	                </tr>
-					<tr>
-	                	<td colspan="3">
-	                		<div id="order-now-submit" class="regi-input regi-btn order-submit">Order Now</div>
-						</td>
-					</tr>
-	            </table>
+							</div>
+					</template><!----------- tmpl-card-old ----------->
+					<div class="card-new-div">
+						<div class="card-old-spare"></div>
+						<div class="regi-table card-div card-new">
+			    			<span>Use new credit card</span>
+			    		</div>
+
+					</div><!----------- card-old-drop ----------->
+					<br/>
+					<div class="regi-table">
+						<div id="js-order-submit-old" class="regi-input regi-btn order-submit">Order Now</div>
+		    		</div>
+					
+				</div>
+				
+				<div class="spareroom"></div>
+				
+			</div><!-- add-funds-old-wrap -->
+
+<!------------------------------------------------ add-funds-new ------------------------------------------------------->	
+			
+			<div id="add-funds-new" class="content-wrap" style="display: none;">
+				<div class="sus-content-wrap">
+					<div class="msg-margin-layer secured-msg-layer js-secured-page">
+						<span class="secured-msg">This is a secured page.</span>
+					</div>
+					<div id="js-card-fill-zero" class="regi-warn-wrap regi-warn-zero msg-margin-layer">
+						<span>All fields are required to be filled.</span>
+					</div>
+					<div class="regi-warn-wrap regi-warn-zero msg-margin-layer js-card-info-fail">
+						<span>
+							Please check your Card Number.<br/>
+							Please check the Credit Card Verification Number.<br/>
+							Please check your Billing Address.						
+						</span>
+					</div>
+					<div id="banner" class="msg-margin-layer">
+						<a class="banner-a" href="#">
+							<img class="banner-img js-freecredits-img" src="img/FreeCredits.png" alt="Lifereader"/>
+						</a>
+					</div>
+				</div><!-- sus-content-wrap -->
+
+				<div class="regi-table">
+
+	                		<span class="regi-span">You Paid / You Can Get</span><br/>
+							<select id="add-funds-select" class="regi-select full-select" name="add-funds-select">
+								<option value='9'>$0 / $10</option>
+	  							<option value='2'>$10 / $10</option>
+	  							<option value='3'>$20 / $20</option>
+	  							<option value='4'>$40 / $40</option>
+	  							<option value='5'>$50 / $50</option>
+	  							<option value='6'>$80 / $80</option>
+	  							<option value='7'>$100 / $100</option>
+	  						</select> 
+							<br/>
+	  						<span class="add-funds-sapn"> 
+	  							Charges will appear on your credit card statement as "supremepsychics.com +14087021044".
+							</span>
+							<br/>
+	            </div>
+				
+				<span class="sus-seperate"></span>
 				<!----------------------------- card-new-table ----------------------------->		            
-				<table id="card-new-table" class="regi-table">
+				<table class="regi-table js-card-new">
 	                <tr>
 				    	<td>
-				    		<p class="nomail-title visa-title">Add a Credit Card</p>
+				    		<h1 class="nomail-title visa-title">Add a Credit Card</h1>
 							<img id="visa-img" class="visa-img" src="img/visa.jpg" alt="Visa"/>
 						</td>
 	                </tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Name</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-name" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter cardholder's Name.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Card Number</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-num" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter card Number.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">CVC/CVV</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-cv" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter CVC/CVV.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Expiry</span><br/>
-							<select id="js-sufb-birth-month" class="regi-select half-select" name="birth-month">
+							<select id="js-new-card-month" class="regi-select half-select" name="birth-month">
 								<option value=''></option>
 	  							<option value='01'>Jan</option>
 	  							<option value='02'>Feb</option>
@@ -1018,83 +1039,83 @@
 	  							<option value='11'>Nov</option>
 	  							<option value='12'>Dec</option>
 	  						</select>
-							<select id="js-sufb-birth-year" class="regi-select half-select expiry-year" name="birth-year">
+							<select id="js-new-card-year" class="regi-select half-select expiry-year" name="birth-year">
 	  							<option value=''></option>
 	  						</select> 
 							<br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Select expiration date.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Address1</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-addr1" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter address.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Address2(optional)</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
-							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
-							</span>
+							<input id="js-new-card-addr2" class="regi-input" type="text" name="new-email"/><br/>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">City</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-city" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter city.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">State/Province</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-state" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter state/province.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Zip</span><br/>
-							<input id="js-new-email" class="regi-input js-input-email" type="text" name="new-email"/><br/>
+							<input id="js-new-card-zip" class="regi-input" type="text" name="new-email"/><br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Enter zip.
 							</span>
 						</td>
 					</tr>
 					<tr>
 	                	<td>
 							<span class="regi-span">Country</span><br/>
-							<select id="add-funds-select" class="regi-select full-select" name="add-funds-select">
-								<option value=''>United States</option>
-								<option value=''>Japan</option>
-	  						</select> 
+							<select id="js-new-card-country" class="regi-select full-select js-select-country" name="add-funds-select">
+								<option value=''></option>
+	  						</select>
+	  						<template id="tmpl-select-courntry">
+								<option value='$id$'>$name$</option>
+							</template> 
 	  						<br/>
 							<span class="regi-warn-wrap regi-warn-error">
-								Enter your email.
+								Select country.
 							</span>
 						</td>
 					</tr>
 					<tr>
-	                	<td colspan="3">
-	                		<div id="order-now-submit" class="regi-input regi-btn order-submit">Order Now</div>
+	                	<td>
+	                		<div id="js-order-submit-new" class="regi-input regi-btn order-submit">Order Now</div>
 						</td>
 					</tr>
 	            </table>
+	            <br/>
+	            <br/>
+	            <span class="sus-seperate js-card-new"></span>
 	            
-	            <span class="sus-seperate"></span>
-	            
-	            <div id="card-new-footer" class="sus-content-wrap">
+	            <div id="card-new-footer" class="sus-content-wrap js-card-new">
 					<span class="add-funds-sapn"> 
  						In some instances, your bank or credit card issuer may charge you a small "foreign" transaction fee. Before purchasing any service, please check with your bank or credit card issuer for more information about its policies regarding foreign transaction fees.
 						<br/>
@@ -1102,19 +1123,78 @@
 						If you prefer, you can call our Billing Department at 1(408)702-1116 or Toll free US & Canada (888)318-2031.
 					</span>
 				</div><!-- sus-content-wrap -->
-	            
+				
 				<div class="spareroom"></div>
-				<div class="spareroom"></div>
+				
 			</div><!-- add-funds-wrap -->
 
-<!------------------------------------------------ free-funds ------------------------------------------------------->	
+<!------------------------------------------------ receipt ------------------------------------------------------->	
 			
-			<div id="free-funds-wrap" class="content-wrap" style="display: block;">
+			<div id="receipt" class="content-wrap">
 				<div class="sus-content-wrap">
 					<div class="msg-margin-layer secured-msg-layer">
 						<span class="secured-msg">This is a secured page.</span>
 					</div>
 				</div>
+				<div id="js-receipt-free" class="receipt-free">
+					<img src="img/10-freecredit.png" class="freecredit-img"></img>
+					<div class="regi-table">
+						We have added $10 into your account<br/>
+	               		<span class="receipt-balance">Balance: $<span class="js-balance">999.99</span></span>
+	               		<br/>
+	               		<br/>
+	               		<br/>
+		            </div>
+		        </div>
+				
+				<table class="regi-table receipt-table js-receipt-ok">
+					<tr>
+	                	<td>
+	                		<h1 class="nomail-title visa-title">Purchase Receipt</h1>
+	                		<br/>
+	                		<p>Thank you for ordering. Here is your receipt.</p>
+						</td>
+					</tr>
+					<tr>
+	                	<td>
+						</td>
+					</tr>
+					<tr>
+	                	<td>
+	                		<table class="receipt-info-table">
+								<tr>
+				                	<th>
+				                		Time
+									</th>
+									<th>
+				                		Amount
+									</th>
+								</tr>
+								<tr>
+				                	<td id="js-receipt-time">
+				                		2014.01.02 01:47:08
+									</td>
+									<td>
+				                		$<span id="js-receipt-amount">20</span>
+									</td>
+								</tr>
+				            </table>
+						</td>
+					</tr>
+					<tr>
+	                	<td class="receipt-balance">
+	            		Balance: $<span class="js-balance">999.99</span>
+						</td>
+					</tr>
+	            </table>
+	            
+	            <span class="receipt-claim js-receipt-ok">Appearing as "supremepsychics.com + 14087021044" on your credit card statement.</span>
+	            <div id="js-receipt-taken" class="regi-table receipt-taken">
+	            	Sorry, we were not able to process your order, because you are already a member of SupremePsychics.com. However, you can still purchase credits with your card to chat with our live psychics.
+	            </div>
+				<div class="regi-table">
+               		<div id="js-continue-btn" class="regi-input regi-btn continue-submit">Continue</div>
+	            </div>
 			</div><!-- free-funds -->
 			
 			
@@ -1122,7 +1202,7 @@
 	</div><!-- content -->
 </div>
 <!------------------------------------------------ order-loading ------------------------------------------------------->
-<div id="order-loading-wrap" class="order-loading-wrap" style="display: none;">
+<div id="order-loading-wrap" class="order-loading-wrap">
 	<div class="loading-spare-layer"></div>
 	<div class="order-loading-content">
 		<a id="closeIcon" href="#" >
@@ -1142,7 +1222,7 @@
 		  	<div class="dot8"></div>
 		</div>
 		<h1>Your order is being processed, Please wait.</h1>
-		<h2>Do not click the refresh or back button or this transaction may be interrupted or terminated.</h2>
+		<p>Do not click the refresh or back button or this transaction may be interrupted or terminated.</p>
 	</div>
 </div><!-- order-loading-wrap -->
 

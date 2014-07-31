@@ -1,3 +1,4 @@
+"use strict";//使用strict mode(嚴格模式)
 /**
  * 
  */
@@ -26,32 +27,37 @@ function backHomepage(){
 }
 
 function getViewerBalance(){
-	AjaxClass({
-        url: URL_APP+'get_viewer_balance', //請求地址
-        type: "POST", //請求方式
-        jsonp: 'callback',
-        //time: 10000, //超時參數設置
-        data: { 
-			username: Cookies.getCookie("username"), 
-			token: Cookies.getCookie("token")
-		},
-		success : function(data) { // 此處放成功後執行的代碼
-
-			//if(data.result === true){
-				Cookies.setCookie("balance", data.balance, COOKIE_EXPIRE);
-				Cookies.setCookie("freecredit", data.freecredit, COOKIE_EXPIRE);
-
-				[].forEach.call(document.querySelectorAll('.js-balance'), function (el) {
-					el.innerHTML = data.balance;
-				});
-			//}else{
-			//	alert(data.msg);
-			//}					
-        },
-        fail : function(status) { // 此處放失敗後執行的代碼
-        	alert(ERROR_012);
-        }
-    });
+	if(Cookies.getCookie("token")){
+		AjaxClass({
+	        url: URL_APP+'get_viewer_balance', //請求地址
+	        type: "POST", //請求方式
+	        jsonp: 'callback',
+	        //time: 10000, //超時參數設置
+	        data: { 
+				username: Cookies.getCookie("username"), 
+				token: Cookies.getCookie("token")
+			},
+			success : function(data) { // 此處放成功後執行的代碼
+	
+				//if(data.result === true){
+					Cookies.setCookie("balance", data.balance, COOKIE_EXPIRE);
+					Cookies.setCookie("freecredit", data.freecredit, COOKIE_EXPIRE);
+	
+					[].forEach.call(document.querySelectorAll('.js-balance'), function (el) {
+						el.innerHTML = data.balance;
+					});
+				//}else{
+				//	alert(data.msg);
+				//}					
+	        },
+	        fail : function(status) { // 此處放失敗後執行的代碼
+	        	alert(ERROR_012);
+	        }
+	    });
+	}else{
+		alert("Please Login!");
+		changeContentWrap("login");
+	}
 }
 
 function setSingUiUx(){
@@ -157,6 +163,12 @@ function setSingUiUx(){
 				}else{
 					querySiblings(el, ".js-warn-account")[0].style.display = "none";
 				}
+			}else{
+				if(!el.value){
+					querySiblings(el, "span")[1].style.display = "block";
+				}else{
+					querySiblings(el, "span")[1].style.display = "none";
+				}
 			}
 		}, false);
 	});
@@ -164,7 +176,7 @@ function setSingUiUx(){
 	[].forEach.call(document.querySelectorAll('.regi-select'), function (el) {
 		el.addEventListener('blur', function() {
 			if(!el.value){
-				querySiblings(el, "span")[1].innerHTML = SIGN_ERROR_MSG_04;
+				//querySiblings(el, "span")[1].innerHTML = SIGN_ERROR_MSG_04;
 				querySiblings(el, "span")[1].style.display = "block";
 			}else{
 				querySiblings(el, "span")[1].style.display = "none";
@@ -195,6 +207,15 @@ function setSingUiUx(){
 	[].forEach.call(document.querySelectorAll('.birth-year'), function (el) {
 		el.innerHTML = oFragment;
 	});
+	
+	var eFragment = '<option value=""></option>';
+	for(var i=thisYear; i<=(thisYear+100); i++){
+        eFragment += '<option value="'+i+'">'+i+'</option>';
+     }
+	//document.querySelectorAll('.birth-year').appendChild(oFragment);
+	[].forEach.call(document.querySelectorAll('.expiry-year'), function (el) {
+		el.innerHTML = eFragment;
+	});
 }
 
 function submitSignup(){
@@ -211,7 +232,7 @@ function submitSignup(){
 		
 		if(!suUsername.value || !suPassword.value || !suCoPassword.value || !suEmail.value || !suYear.value || !suMonth.value || !suDay.value){
 			document.getElementById('js-signup-zero-fill').style.display = "block";
-
+			moveToTheTop();
 		}else{
 			AjaxClass({
 		        url: URL_APP+'sign_up', //請求地址
@@ -235,7 +256,7 @@ function submitSignup(){
 						Cookies.setCookie("validate_hash", data.validate_hash, COOKIE_EXPIRE);
 						
 						setUsernameAndEmail(Cookies.getCookie("username"), Cookies.getCookie("email"));
-						changeContentWrap("signup-success-wrap");
+						changeContentWrap("signup-success");
 
 					}else{
 						alert(data.msg);
@@ -257,6 +278,7 @@ function submitLogin(){
 
 		if(!liUsername.value || !liPassword.value){
 			document.getElementById('js-login-zero-fill').style.display = "block";
+			moveToTheTop();
 		}else{
 			AjaxClass({
 		        url: URL_APP+'login', //請求地址
@@ -284,7 +306,7 @@ function submitLogin(){
 							Cookies.setCookie("validate_hash", data.validate_hash, COOKIE_EXPIRE);
 							
 							setUsernameAndEmail(Cookies.getCookie("username"), Cookies.getCookie("email"));
-							changeContentWrap("signup-success-wrap");
+							changeContentWrap("signup-success");
 							
 							alert(ERROR_008);
 						}else{
@@ -316,6 +338,7 @@ function updateEmail(){
 
 		if(!newEmail.value){
 			document.getElementById('js-new-mail-zero').style.display = "block";
+			moveToTheTop();
 		}else{
 			AjaxClass({
 		        url: URL_APP+'update_email', //請求地址
@@ -331,7 +354,7 @@ function updateEmail(){
 					if(data.result === true){
 						Cookies.setCookie("email", newEmail.value, COOKIE_EXPIRE);
 						
-						changeContentWrap("signup-success-wrap");
+						changeContentWrap("signup-success");
 						
 						document.getElementById('js-mail-change-ok').style.display = "block";
 						/*setTimeout(function(){
@@ -404,7 +427,8 @@ function signupWithFB(fbData){
 		
 		
 		if(!suFbUsername.value || !suFbPassword.value || !suFbCoPassword.value || !suFbYear.value || !suFbMonth.value || !suFbDay.value){
-			document.getElementById('js-sufb--zero-fill').style.display = "block";
+			document.getElementById('js-sufb-zero-fill').style.display = "block";
+			moveToTheTop();
 		}else if(!fbData){
 			AjaxClass({
 		        url: URL_APP+'sign_up', //請求地址
@@ -474,7 +498,7 @@ function resendActiveEmail(){
 
 function forgotPassword(){
 	document.querySelector('#js-forgot-pwd-a').addEventListener('click', function() {
-		changeContentWrap("forgot-pwd-wrap");
+		changeContentWrap("forgot-pwd");
 	}, false);
 	
 	document.querySelector('#forget-pwd-submit').addEventListener('click', function() {
@@ -483,6 +507,7 @@ function forgotPassword(){
 		
 		if(!fgUsername.value || !fgCaptcha.value){
 			document.getElementById('forgot-pwd-zero-fill').style.display = "block";
+			moveToTheTop();
 		}else{
 			AjaxClass({
 		        url: URL_APP+'forgot_password', //請求地址
