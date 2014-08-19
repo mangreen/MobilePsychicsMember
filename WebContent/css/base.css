@@ -1,3 +1,194 @@
 @CHARSET "UTF-8";
 
-.dpn{display: none;}
+body, input, select {font-family: 'Arial', sans-serif;}
+
+.w50, .signin-btn-640{width: 50%;}
+.w100, header, #signin-bar-640, #menu, #menu-list li{width: 100%;}
+.w52p, .bgurli, #nav-img, .mbtn-img{width: 52px;}
+
+.h52p, .bgurli, header, #logo, .user-divide-img, #nav-img, #user-wrap, .menu-btn, .mbtn-img{height: 52px;}
+
+.lh52, .signin-btn-640, .mbtn-text{line-height: 52px;}
+
+.posf, header{position: fixed;}
+.posr, .nav-unread, #signin-bar-640, .user-snail-img, #user-wrap a{position: relative;}
+.posa, #menu, .mbtn-text, #mail-unread{position: absolute;}
+
+.l0, #menu{left: 0;}
+.t0, #menu{top: 0;}
+
+.mg0a, #logo{margin: 0 auto;}
+.mgl5{margin-left: 5px;}
+.mgl10{margin-left: 10px;}
+.mgl15{margin-left: 15px;}
+.mgl20{margin-left: 20px;}
+
+.fl, .signin-btn-640, .signin-btn-1024{float: left;}
+.fr, #signin-bar-1024, #user-wrap, #user-wrap a{float: right;}
+
+.ovh, body, #menu{overflow: hidden;}
+
+.z999, header{z-index: 999;}
+.z99{z-index: 99;}
+.z9{z-index: 9;}
+.z1{z-index: 1;}
+.z-1, #menu{z-index: -1;}
+
+.dpli, .mbtn-text, #mail-unread{display: inline;}
+.dplb, #user-wrap a, #menu-list li, #menu-list a, .mcls-text{display: block;}
+.dpln, #user-wrap{display: none;}
+.dplib, .icon_nav, #nav-img, #menu, .mbtn-img{display: inline-block;}
+
+.bdr10, .nav-unread{border-radius: 10px;}
+.bdr5{border-radius: 5px;}
+.bdt1p{border-top: 1px solid;}
+.bdb1p{border-bottom: 1px solid;}
+
+.c000{color: #000;}
+.cfff, .nav-unread, .join-free-btn:active, #user-wrap, .menu-btn:active{color: #fff;}
+
+.fs10p{font-size: 10px;}
+.fs12p, .nav-unread, .signin-btn-1024, #user-wrap a{font-size: 12px;}
+.fs14p{font-size: 14px;}
+.fs16p{font-size: 16px;}
+
+.fwb, .join-free-btn, .login-btn, #menu-list li{font-weight: bold;}
+
+.tac, .signin-btn-640, .signin-btn-1024{text-align: center;}
+
+.vam{vertical-align : middle;}
+
+.lsn, #menu-list ul{list-style: none;}
+
+.tdn, #menu-list a{text-decoration: none;}
+.tdu, #user-wrap a:active{text-decoration: underline;}
+
+.bgurlm{background: url('../img/icon_nav.png') no-repeat;}
+.bgurli{background: url('../img/icon.png') no-repeat;}
+
+/******************************************** header ***********************************************/
+
+header{
+	background: #20314e;
+}
+
+#logo{
+	background:url('../img/logo.png') no-repeat;
+	width: 192px;
+}
+
+#nav-img{
+	background:url('../img/icon.png') no-repeat 0px 0px;
+}
+
+.nav-unread{
+	background: #ff0000;
+	top: -30px;
+	left: -25px;
+}
+
+#signin-bar-640{
+	height: 80px;
+}
+#signin-bar-1024{
+ 	margin-top: -40px;
+	margin-right: 5px; 
+}
+
+.join-free-btn{
+	background: #ffd001;
+	color: #666666;
+}
+.join-free-btn:active{
+	background: #ff7901;
+}
+
+.login-btn{
+	background: #1c90bb;
+	color: #ededed;
+}
+.login-btn:active{
+	background: #156c8c;
+}
+.signin-btn-640{
+	font-size: 21px;
+	margin-top: 14px;
+}
+
+.signin-btn-1024{
+	width: 90px;
+	line-height: 30px;
+	margin-right: 10px;
+}
+
+#user-wrap{
+ 	margin-top: -52px;
+	margin-right: 5px; 
+}
+.user-divide-img{
+	width: 1px;
+}
+.user-snail-img{
+	width: 40px;
+	height: 40px;
+	top: -6px;
+}
+#user-wrap a{
+	line-height: 20px;
+	top: -47px;
+}
+
+/******************************************** menu ***********************************************/
+
+#menu{
+	background: #bdcbd5;
+	width: 260px;
+}
+
+#menu-drag{
+	background: #bdcbd5;
+}
+
+#menu-list li{
+	font-size: 20px;
+} 
+#menu-list a{
+	border-top: #e5eaee 1px solid;
+	border-bottom: #78858d 1px solid;
+}
+
+.menu-cls{
+	background: #394852;
+	color: #7cbce6;
+	line-height: 36px;
+	
+	border-top: #54585a 1px solid;
+	border-bottom: #494e51 1px solid; 
+}
+
+.mcls-text{
+	margin-left: 20px;
+}
+
+.menu-btn{
+	background: #bdcbd5;
+	color: #165582;
+/* 	text-align : center; */
+}
+
+.menu-btn:active{
+	background: #85929b;
+}
+
+.mbtn-text{
+	left: 70px;
+}
+
+#mail-unread{
+	height: 80px;
+	left: 150px;
+}
+
+.mbtn-img{
+	margin-left: 10px;
+}

@@ -171,7 +171,7 @@ function addMenuListeners(){
 	//alert("ready");
 	var userWrap = document.getElementById('user-wrap');
 	
-	var navBtn = document.getElementById('nav-btn-wrap');
+	var navBtn = document.getElementById('js-nav-btn-wrap');
 	var content = document.getElementById('content');
 	var menu = document.getElementById('menu');
 	var menuDrag = document.getElementById('menu-drag');
@@ -237,7 +237,7 @@ function addMenuListeners(){
 			if(content.style.left === MENU_W+"px"){
 				content.style.left = "0px";
 				menuDrag.style.top = HEADER_H+"px";
-				document.getElementById('nav-btn-wrap').style.cssFloat = "left";
+				document.getElementById('js-nav-btn-wrap').style.cssFloat = "left";
 				document.getElementById('logo').style.cssFloat = "";
 				
 				if(Cookies.getCookie("token") === true){
@@ -245,7 +245,7 @@ function addMenuListeners(){
 				}
 			}else if(isMenu){
 				content.style.left = MENU_W+"px";
-				document.getElementById('nav-btn-wrap').style.cssFloat = "right";
+				document.getElementById('js-nav-btn-wrap').style.cssFloat = "right";
 				document.getElementById('logo').style.cssFloat = "left";
 				
 				if(Cookies.getCookie("token") === true){
@@ -520,7 +520,7 @@ window.addEventListener('resize', function() {
 	
 	document.getElementById('menu').style.zIndex = "-1";
 	document.getElementById('content').style.left = "0px";
-	document.getElementById('nav-btn-wrap').style.cssFloat = "left";
+	document.getElementById('js-nav-btn-wrap').style.cssFloat = "left";
 	
 	detectAndFit();
 });

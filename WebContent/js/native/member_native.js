@@ -6,6 +6,7 @@
 function setHompage(){
 	delegatePsychic();
 	getPsychicList(1);
+	getPsychicBanner();
 }
 
 function delegatePsychic(){
@@ -65,21 +66,40 @@ function getPsychicList(page){
         	alert(ERROR_001);
         }
     });
-	
-	/*new AjaxClass({
-        type: 'POST',
-        url: 'test.jsp',
-        dataType: "json",
-        data: { 
-            username: 'amykuo', 
-            page: 1, 
-            pagesize: 16
-        },
-        success: function(data) {            
-            alert(data.psychics[0].img);
+
+}
+/*var bannerIndex = 0; 
+var bannerAry = new Array();*/
+function getPsychicBanner(){
+	AjaxClass({
+        url: URL_APP+'psychic_banner', //請求地址
+        type: "POST", //請求方式
+        jsonp: 'callback',
+        //time: 10000, //超時參數設置
+        data: { //請求參數
+
+		},
+		success : function(data) { // 此處放成功後執行的代碼
+			console.log(data);
+
+			/*bannerIndex = 0;
+			bannerAry = data.ary_banner;
+			slideShowImg();*/
+
         },
         fail : function(status) { // 此處放失敗後執行的代碼
-        	alert(status);
+        	alert(ERROR_001);
         }
-    });*/
+    });
 }
+
+/*function slideShowImg(){
+	 document.slide.src = bannerAry[bannerIndex].img_url;
+	 document.slide.dataset = bannerAry[bannerIndex].psyname; 
+	 if(bannerIndex < bannerAry.length - 1){ 
+		 bannerIndex++;
+	 }else{ 
+		 bannerIndex = 0; 
+	 }
+	 setTimeout("slideShowImg()", 3000);
+}*/
